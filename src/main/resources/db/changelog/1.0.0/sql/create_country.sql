@@ -24,7 +24,7 @@ comment on column country.name is 'Название страны';
 
 comment on column country.national_language is 'Национальный язык';
 
-comment on column country.area is 'Площадь';
+comment on column country.area is 'Площадь км^2';
 
 comment on column country.population is 'Население';
 
