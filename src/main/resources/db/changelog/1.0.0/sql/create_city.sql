@@ -34,7 +34,7 @@ comment on column city.country_id is 'Идентификатор страны в
 
 comment on column city.is_capital is 'Является ли столицей';
 
-comment on column city.area is 'Площадь';
+comment on column city.area is 'Площадь км^2';
 
 comment on column city.population is 'Население';
 
