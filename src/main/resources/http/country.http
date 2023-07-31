@@ -1,0 +1,7 @@
+GET http://localhost:9000/demo/country/name?name=China
+
+###
+GET http://localhost:9000/demo/country/7
+
+###
+GET http://localhost:9000/demo/country/all

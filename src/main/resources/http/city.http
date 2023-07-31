@@ -1,0 +1,7 @@
+GET http://localhost:9000/demo/city/all
+
+###
+GET http://localhost:9000/demo/city/3
+
+###
+GET http://localhost:9000/demo/city/name?name=Moscow

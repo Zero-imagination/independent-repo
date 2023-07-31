@@ -1,44 +1,55 @@
-package com.disagreed.independentrepo.model;
+package com.disagreed.independentrepo.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
+import lombok.NoArgsConstructor;
 
 /**
- * Класс для общих параметров.
+ * Модель данных страны
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-@MappedSuperclass
-public abstract class CommonAbstractAttributes extends BaseAbstractSystemAttributes{
+@NoArgsConstructor
+@AllArgsConstructor
+public class CountryDto {
+
+    /**
+     * Идентификатор страны в БД
+     */
+    private Long countryId;
+
+    /**
+     * Название.
+     */
+    private String name;
+
+    /**
+     * Национальный язык.
+     */
+    private String nationalLanguage;
 
     /**
      * Площадь.
      */
     @EqualsAndHashCode.Exclude
-    @Column(name = "area")
     private Long area;
 
     /**
      * Население.
      */
     @EqualsAndHashCode.Exclude
-    @Column(name = "population")
     private Long population;
 
     /**
      * Плотность населения чел./км^2.
      */
     @EqualsAndHashCode.Exclude
-    @Column(name = "density")
     private Long density;
 
     /**
      * Координаты местоположения - ширина и долгота.
      */
     @EqualsAndHashCode.Exclude
-    @Column(name = "coordinates")
     private String coordinates;
+
 }

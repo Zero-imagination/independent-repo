@@ -1,5 +1,7 @@
 package com.disagreed.independentrepo.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,6 +15,7 @@ import java.time.OffsetDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@MappedSuperclass
 public abstract class BaseAbstractSystemAttributes {
 
     /**
@@ -20,6 +23,7 @@ public abstract class BaseAbstractSystemAttributes {
      * Column - create_dttm
      */
     @EqualsAndHashCode.Exclude
+    @Column(name = "create_dttm")
     private OffsetDateTime createDttm;
 
     /**
@@ -27,6 +31,7 @@ public abstract class BaseAbstractSystemAttributes {
      * Column - modify_dttm
      */
     @EqualsAndHashCode.Exclude
+    @Column(name = "modify_dttm")
     private OffsetDateTime modifyDttm;
 
     /**
@@ -34,6 +39,7 @@ public abstract class BaseAbstractSystemAttributes {
      * Column - action_ind
      */
     @EqualsAndHashCode.Exclude
+    @Column(name = "action_ind")
     private ActionIndicatorEnum actionInd;
 
 }
