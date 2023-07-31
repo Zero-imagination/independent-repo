@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.MybatisCountryMapper">
+    <resultMap id="country" type="com.disagreed.independentrepo.model.entity.CountryEntity" autoMapping="true">
+        <id property="countryId" column="country_id"/>
+        <result property="name" column="name"/>
+        <result property="natioanlLanguage" column="national_language"/>
+        <result property="area" column="area"/>
+        <result property="population" column="population"/>
+        <result property="density" column="density"/>
+        <result property="coordinates" column="coordinates"/>
+    </resultMap>
+
+    <select id="getByCountryId" resultMap="country">
+        select *
+        from country
+        where country_id=#{cityId}
+            and action_ind != 'D'
+    </select>
+</mapper>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CityRepository extends JpaRepository<CityEntity, Long> {
+public interface HibernateCityRepository extends JpaRepository<CityEntity, Long> {
 
     Optional<CityEntity> findCityEntityByName(String name);
 
