@@ -1,3 +1,10 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /demo
+    session:
+      timeout: 14400
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/disagreed_db?currentSchema=independent_repo
