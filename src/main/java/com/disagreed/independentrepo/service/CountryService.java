@@ -12,4 +12,6 @@ public interface CountryService {
 
     List<CountryDto> getAll();
 
+    Long getCountAll();
+
 }
