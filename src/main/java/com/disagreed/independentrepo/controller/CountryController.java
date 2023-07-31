@@ -34,4 +34,9 @@ public class CountryController {
     public CountryDto getByName(@RequestParam String name) {
         return countryService.getByName(name);
     }
+
+    @GetMapping(value = "/countAll")
+    public Long getCountAll() {
+        return countryService.getCountAll();
+    }
 }
