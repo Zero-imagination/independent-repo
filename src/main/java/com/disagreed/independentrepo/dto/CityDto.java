@@ -1,6 +1,5 @@
 package com.disagreed.independentrepo.dto;
 
-import com.disagreed.independentrepo.model.entity.CountryEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,7 +23,7 @@ public class CityDto {
     /**
      * Сущность страны.
      */
-    private CountryEntity country;
+    private CountryDto country;
 
     /**
      * Является столицей
