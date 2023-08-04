@@ -7,7 +7,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/disagreed_db?currentSchema=independent_repo
+    url: jdbc:postgresql://localhost:5432/dis_db?currentSchema=independent_repo
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
@@ -20,6 +20,7 @@ spring:
     enabled: true
     change-log: classpath:db/master.xml
     contexts: dev
+    default-schema: public
 
 ## hibernate or mybatis
 repository:
