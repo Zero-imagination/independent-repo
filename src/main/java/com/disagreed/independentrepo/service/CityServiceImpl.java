@@ -4,22 +4,18 @@ import com.disagreed.independentrepo.dto.CityDto;
 import com.disagreed.independentrepo.mapper.CityMapper;
 import com.disagreed.independentrepo.model.entity.CityEntity;
 import com.disagreed.independentrepo.repository.api.IndependentCityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CityServiceImpl implements CityService {
 
     private final IndependentCityRepository cityRepository;
 
-    @Autowired
-    private CityMapper cityMapper;
-
-    public CityServiceImpl(IndependentCityRepository cityRepository) {
-        this.cityRepository = cityRepository;
-    }
+    private final CityMapper cityMapper;
 
     @Override
     public CityDto getByCityId(Long cityId) {
