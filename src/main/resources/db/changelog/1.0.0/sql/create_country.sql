@@ -1,3 +1,7 @@
+create schema if not exists independent_repo;
+
+set search_path to independent_repo;
+
 create sequence if not exists country_seq start 1;
 
 create table if not exists country
