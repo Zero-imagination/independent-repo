@@ -25,3 +25,6 @@ spring:
 ## hibernate or mybatis
 repository:
   name: hibernate
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml

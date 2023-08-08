@@ -1,8 +1,8 @@
-package com.disagreed.independentrepo.repository;
+package com.disagreed.independentrepo.repository.impl;
 
 import com.disagreed.independentrepo.model.entity.CountryEntity;
 import com.disagreed.independentrepo.repository.api.IndependentCountryRepository;
-import com.disagreed.independentrepo.repository.mybatis.MybatisCountryMapper;
+import com.disagreed.independentrepo.repository.mybatis.CountryMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,10 @@ import java.util.Optional;
 @ConditionalOnProperty(value = "repository.name", havingValue = "mybatis")
 public class MybatisIndependentCountryRepositoryImpl implements IndependentCountryRepository {
 
-    private final MybatisCountryMapper mybatisCountryRepository;
+    private final CountryMapper mybatisCountryRepository;
 
     public MybatisIndependentCountryRepositoryImpl(
-            MybatisCountryMapper mybatisCountryRepository) {this.mybatisCountryRepository = mybatisCountryRepository;}
+            CountryMapper mybatisCountryRepository) {this.mybatisCountryRepository = mybatisCountryRepository;}
 
     @Override
     public Optional<CountryEntity> getByCountryId(Long countryId) {

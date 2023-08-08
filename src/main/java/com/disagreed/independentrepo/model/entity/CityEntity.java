@@ -41,16 +41,16 @@ public class CityEntity extends CommonAbstractAttributes {
     private String name;
 
     /**
+     * Является столицей
+     */
+    @Column(name = "is_capital")
+    private boolean isCapital;
+
+    /**
      * Сущность страны.
      */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     private CountryEntity country;
-
-    /**
-     * Является столицей
-     */
-    @Column(name = "is_capital")
-    private boolean isCapital;
 
 }
