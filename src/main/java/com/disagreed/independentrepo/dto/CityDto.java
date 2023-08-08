@@ -21,11 +21,6 @@ public class CityDto {
     private String name;
 
     /**
-     * Сущность страны.
-     */
-    private CountryDto country;
-
-    /**
      * Является столицей
      */
     private boolean isCapital;
@@ -53,4 +48,9 @@ public class CityDto {
      */
     @EqualsAndHashCode.Exclude
     private String coordinates;
+
+    /**
+     * Сущность страны.
+     */
+    private CountryDto country;
 }
