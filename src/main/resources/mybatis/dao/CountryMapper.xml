@@ -40,10 +40,18 @@
     </select>
 
     <select id="countAll" resultType="Long">
-        select count(
-        country_id)
+        select count(country_id)
         from country
         where action_ind !='D'
+    </select>
+
+    <select id="exists" resultType="boolean">
+        select
+            exists(
+                select country_id
+                from country
+                where country_id = #{countryId}
+                    and action_ind != 'D')
     </select>
 
 </mapper>

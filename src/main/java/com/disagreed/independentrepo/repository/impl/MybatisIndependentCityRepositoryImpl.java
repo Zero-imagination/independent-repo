@@ -6,6 +6,7 @@ import com.disagreed.independentrepo.repository.mybatis.CityMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,21 @@ public class MybatisIndependentCityRepositoryImpl implements IndependentCityRepo
 
     public MybatisIndependentCityRepositoryImpl(CityMapper repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public int saveAll(Collection<CityEntity> cities) {
+        return repository.saveAll(cities);
+    }
+
+    @Override
+    public int updateAll(Collection<CityEntity> cities) {
+        return repository.updateAll(cities);
+    }
+
+    @Override
+    public int markDeleteAll(Collection<Long> ids) {
+        return repository.markDeleteAll(ids);
     }
 
     @Override
@@ -32,5 +48,10 @@ public class MybatisIndependentCityRepositoryImpl implements IndependentCityRepo
     @Override
     public List<CityEntity> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public List<CityEntity> getAllByCountryIds(Collection<Long> countryIds) {
+        return repository.getAllByCountryIds(countryIds);
     }
 }

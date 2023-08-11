@@ -14,4 +14,5 @@ public interface CountryService {
 
     Long getCountAll();
 
+    Boolean exists(Long counryId);
 }

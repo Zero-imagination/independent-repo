@@ -23,7 +23,7 @@ public abstract class BaseAbstractSystemAttributes {
      * Column - create_dttm
      */
     @EqualsAndHashCode.Exclude
-    @Column(name = "create_dttm")
+    @Column(name = "create_dttm", updatable = false)
     private OffsetDateTime createDttm;
 
     /**

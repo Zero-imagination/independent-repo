@@ -34,27 +34,82 @@
 
     <select id="getByCityId" resultMap="City">
         select 
-        <include refid="BaseCityColumns"></include>
+        <include refid="BaseCityColumns"/>
         from city ci
-        <include refid="CityJoin"></include>
+        <include refid="CityJoin"/>
         where city_id =#{cityId}
             and ci.action_ind != 'D'
     </select>
 
     <select id="getByName" resultMap="City">
         select
-        <include refid="BaseCityColumns"></include>
+        <include refid="BaseCityColumns"/>
         from city ci
-        <include refid="CityJoin"></include>
+        <include refid="CityJoin"/>
         where ci.name = #{name}
             and ci.action_ind != 'D'
     </select>
 
     <select id="getAll" resultMap="City">
         select
-        <include refid="BaseCityColumns"></include>
+        <include refid="BaseCityColumns"/>
         from city ci
-        <include refid="CityJoin"></include>
+        <include refid="CityJoin"/>
         where ci.action_ind != 'D'
     </select>
+
+    <select id="getAllByCountryIds" parameterType="collection" resultMap="City">
+        select
+        <include refid="BaseCityColumns"/>
+        from city ci
+        <include refid="CityJoin"/>
+        where co.country_id in
+            <foreach collection="countryIds" open="(" item="id" separator="," close=")">
+                #{id}
+            </foreach>
+            and ci.action_ind != 'D'
+    </select>
+    
+    <insert id="saveAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        insert into city
+        (name, is_capital, area, population, density, coordinates, country_id)
+        values
+        <foreach collection="cities" item="city" separator=",">
+            (#{city.name}, #{city.isCapital}, #{city.area}, #{city.population},
+            #{city.density}, #{city.coordinates}, #{city.country.countryId})
+        </foreach>
+    </insert>
+
+    <update id="updateAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        update city as c
+        set
+        name = new.name,
+        is_capital = new.isCapital,
+        area = new.area,
+        population = new.population,
+        density = new.density,
+        coordinates = new.coordinates,
+        country_id =  new.countryId,
+        modify_dttm = now(),
+        action_ind = 'U'
+        from
+        <foreach collection="cities" item="city" open='(VALUES' separator=',' close=')'>
+            (#{city.cityId}, #{city.name}, #{city.isCapital}, #{city.area}, #{city.population},
+            #{city.density}, #{city.coordinates}, #{city.country.countryId})
+        </foreach>
+        as new(cityId, name, isCapital, area, population, density, coordinates, countryId)
+        where c.city_id = new.cityId
+            and action_ind != 'D'
+    </update>
+
+    <update id="markDeleteAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        <if test="ids != null and ids.size() != 0">
+            update city set
+            action_ind = 'D'
+            where city_id
+            in (<foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>);
+        </if>
+    </update>
 </mapper>

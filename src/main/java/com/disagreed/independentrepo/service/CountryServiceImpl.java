@@ -38,4 +38,9 @@ public class CountryServiceImpl implements CountryService{
                 .orElseThrow(()-> new RuntimeException("Не удалось получить количество стран"));
     }
 
+    @Override
+    public Boolean exists(Long counryId) {
+        return countryRepository.exists(counryId);
+    }
+
 }

@@ -20,4 +20,6 @@ public interface CountryMapper {
 
     Optional<Long> countAll();
 
+    Boolean exists(Long countryId);
+
 }
