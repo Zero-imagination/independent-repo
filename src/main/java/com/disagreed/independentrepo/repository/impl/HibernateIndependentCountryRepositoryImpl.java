@@ -38,4 +38,9 @@ public class HibernateIndependentCountryRepositoryImpl implements IndependentCou
     public Optional<Long> countAll() {
         return hibernateCountryRepository.countCountryEntitiesByActionIndIsNotLike(ActionIndicatorEnum.DELETE);
     }
+
+    @Override
+    public Boolean exists(Long countryId) {
+        return hibernateCountryRepository.existsById(countryId);
+    }
 }

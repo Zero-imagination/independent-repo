@@ -37,4 +37,9 @@ public class MybatisIndependentCountryRepositoryImpl implements IndependentCount
     public Optional<Long> countAll() {
         return mybatisCountryRepository.countAll();
     }
+
+    @Override
+    public Boolean exists(Long countryId) {
+        return mybatisCountryRepository.exists(countryId);
+    }
 }

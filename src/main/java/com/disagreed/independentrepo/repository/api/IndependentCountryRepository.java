@@ -15,4 +15,6 @@ public interface IndependentCountryRepository {
 
     Optional<Long> countAll();
 
+    Boolean exists(Long countryId);
+
 }
