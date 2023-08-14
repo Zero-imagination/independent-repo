@@ -31,7 +31,7 @@ public class CityEntity extends CommonAbstractAttributes {
      * Идентификатор БД.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "city_id")
     private Long cityId;
 
@@ -50,7 +50,7 @@ public class CityEntity extends CommonAbstractAttributes {
     /**
      * Сущность страны.
      */
-    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "country_id", referencedColumnName = "country_id")
     private CountryEntity country;
 

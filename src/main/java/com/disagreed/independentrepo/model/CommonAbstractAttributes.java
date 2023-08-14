@@ -5,7 +5,6 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 /**
  * Класс для общих параметров.
  */

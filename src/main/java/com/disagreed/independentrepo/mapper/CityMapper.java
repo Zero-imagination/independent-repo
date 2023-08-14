@@ -3,6 +3,7 @@ package com.disagreed.independentrepo.mapper;
 import com.disagreed.independentrepo.dto.CityDto;
 import com.disagreed.independentrepo.model.entity.CityEntity;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public interface CityMapper extends AbstractMapper<CityEntity, CityDto> {
 
     @Override
+    @Mapping(target = "createDttm", ignore = true)
+    @Mapping(target = "modifyDttm", ignore = true)
+    @Mapping(target = "actionInd", ignore = true)
     CityEntity toEntity(CityDto dto);
 
     @Override
