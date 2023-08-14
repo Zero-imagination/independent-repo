@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:tc:postgresql:14.8:///testcontainerMyb
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
+    username: postgres
+    password: root
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db-test/master.xml
+    drop-first: true
+    test-rollback-on-update: false
+    labels: testcontainer
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+## hibernate or mybatis
+repository:
+  name: mybatis

@@ -13,9 +13,11 @@ import java.util.Optional;
 @Repository
 public interface HibernateCityRepository extends JpaRepository<CityEntity, Long> {
 
-    Optional<CityEntity> findCityEntityByName(String name);
+    @Query(value = "select * from city where name = :name and city.action_ind != 'D'", nativeQuery = true)
+    Optional<CityEntity> findCityEntityByName(@Param("name") String name);
 
-    Optional<CityEntity> findCityEntityByCityId(Long cityId);
+    @Query("select city from CityEntity city where city.cityId=:id and city.actionInd <> 'D'")
+    Optional<CityEntity> findCityEntityByCityId(@Param("id") Long cityId);
 
     @Modifying
     @Query(value = "update city set action_ind = 'D' where city.city_id in :ids", nativeQuery = true)

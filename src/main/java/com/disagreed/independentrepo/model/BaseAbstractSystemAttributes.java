@@ -24,7 +24,7 @@ public abstract class BaseAbstractSystemAttributes {
      */
     @EqualsAndHashCode.Exclude
     @Column(name = "create_dttm", updatable = false)
-    private OffsetDateTime createDttm;
+    private OffsetDateTime createDttm = OffsetDateTime.now();
 
     /**
      * Дата время последнего изменения записи.
@@ -32,7 +32,7 @@ public abstract class BaseAbstractSystemAttributes {
      */
     @EqualsAndHashCode.Exclude
     @Column(name = "modify_dttm")
-    private OffsetDateTime modifyDttm;
+    private OffsetDateTime modifyDttm = OffsetDateTime.now();
 
     /**
      * Индикатор операции DML(I-insert,D-delete,U-update).
@@ -40,6 +40,6 @@ public abstract class BaseAbstractSystemAttributes {
      */
     @EqualsAndHashCode.Exclude
     @Column(name = "action_ind")
-    private ActionIndicatorEnum actionInd;
+    private ActionIndicatorEnum actionInd = ActionIndicatorEnum.INSERT;
 
 }

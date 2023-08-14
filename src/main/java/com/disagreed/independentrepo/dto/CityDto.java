@@ -13,6 +13,7 @@ public class CityDto {
     /**
      * Идентификатор БД.
      */
+    @EqualsAndHashCode.Exclude
     private Long cityId;
 
     /**

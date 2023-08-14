@@ -94,8 +94,9 @@
         action_ind = 'U'
         from
         <foreach collection="cities" item="city" open='(VALUES' separator=',' close=')'>
-            (#{city.cityId}, #{city.name}, #{city.isCapital}, #{city.area}, #{city.population},
-            #{city.density}, #{city.coordinates}, #{city.country.countryId})
+            (#{city.cityId,jdbcType=BIGINT}, #{city.name,jdbcType=VARCHAR}, #{city.isCapital,jdbcType=BOOLEAN},
+                #{city.area,jdbcType=BIGINT}, #{city.population,jdbcType=BIGINT}, #{city.density,jdbcType=REAL},
+                #{city.coordinates,jdbcType=VARCHAR}, #{city.country.countryId,jdbcType=BIGINT})
         </foreach>
         as new(cityId, name, isCapital, area, population, density, coordinates, countryId)
         where c.city_id = new.cityId
