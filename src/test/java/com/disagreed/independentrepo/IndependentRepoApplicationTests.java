@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles(value = {"hibernate", "mybatis"})
+@ActiveProfiles(value = {"mybatis"})
 class IndependentRepoApplicationTests {
 
     @Test

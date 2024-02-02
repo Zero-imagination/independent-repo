@@ -1,5 +1,3 @@
-set search_path to independent_repo;
-
 create sequence if not exists city_seq start 1;
 
 create table if not exists city

@@ -21,6 +21,7 @@
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <hibernate.hibernate-entitymanager.version>5.6.15.Final</hibernate.hibernate-entitymanager.version>
         <testcontainers.version>1.18.3</testcontainers.version>
+        <docker.compose.version>3.2.2</docker.compose.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+            <version>${docker.compose.version}</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>postgresql</artifactId>
             <version>${testcontainers.version}</version>
@@ -121,6 +128,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <excludeDockerCompose>true</excludeDockerCompose>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
