@@ -27,7 +27,6 @@ public class CountryEntity extends CommonAbstractAttributes {
      * Идентификатор страны в БД
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "country_id")
     private Long countryId;
 

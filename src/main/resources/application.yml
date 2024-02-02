@@ -7,7 +7,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dis_db?currentSchema=independent_repo
+    url: jdbc:postgresql://localhost:5432/dis_db
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
@@ -22,9 +22,15 @@ spring:
     contexts: dev
     default-schema: public
 
+  docker:
+    compose:
+      enabled: true
+      stop:
+        command: down
+
 ## hibernate or mybatis
 repository:
-  name: hibernate
+  name: mybatis
 
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
