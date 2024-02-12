@@ -1,4 +1,4 @@
-package com.disagreed.independentrepo.service;
+package com.disagreed.independentrepo.api;
 
 import com.disagreed.independentrepo.dto.CountryDto;
 

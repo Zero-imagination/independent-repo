@@ -1,7 +1,7 @@
 package com.disagreed.independentrepo.controller;
 
 import com.disagreed.independentrepo.dto.CityDto;
-import com.disagreed.independentrepo.service.CityService;
+import com.disagreed.independentrepo.api.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
