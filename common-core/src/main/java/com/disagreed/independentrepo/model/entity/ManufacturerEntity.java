@@ -34,5 +34,5 @@ public class ManufacturerEntity {
 
     @OneToOne
     @JoinColumn(name = "person_id")
-    private PersonEntity responsiblePerson;
+    private PersonEntity person;
 }

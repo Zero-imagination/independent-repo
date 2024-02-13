@@ -2,10 +2,11 @@ create sequence if not exists menu_seq start 1;
 
 create table if not exists menu
 (
-    menu_id       bigint not null default nextval('menu_seq' :: regclass),
+    menu_id       bigint       not null default nextval('menu_seq' :: regclass),
+    name          varchar(128) not null,
     description   text,
-    category_id   bigint not null,
-    restaurant_id bigint not null,
+    category_id   bigint       not null,
+    restaurant_id bigint       not null,
 
     constraint menu_pk primary key (menu_id),
 

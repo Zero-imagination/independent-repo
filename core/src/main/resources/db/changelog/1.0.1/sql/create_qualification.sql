@@ -2,7 +2,7 @@ create sequence if not exists qualification_seq start 1;
 
 create table if not exists qualification
 (
-    qualification_id bigint not null default nextval('qualification' :: regclass),
+    qualification_id bigint not null default nextval('qualification_seq' :: regclass),
     level            bigint not null,
     description      text,
 

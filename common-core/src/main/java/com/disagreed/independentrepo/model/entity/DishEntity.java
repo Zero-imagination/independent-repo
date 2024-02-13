@@ -29,6 +29,8 @@ public class DishEntity {
     @Column(name = "dish_id")
     private Long dishId;
 
+    private String name;
+
     private BigDecimal price;
 
     private String description;

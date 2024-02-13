@@ -3,11 +3,12 @@ create sequence if not exists dish_seq start 1;
 create table if not exists dish
 (
     dish_id          bigint  not null default nextval('dish_seq' :: regclass),
+    name             text    not null,
+    menu_id          bigint  not null,
+    qualification_id bigint  not null,
     price            numeric not null,
     description      text,
     image            text,
-    qualification_id bigint  not null,
-    menu_id          bigint  not null,
 
     constraint dish_pk primary key (dish_id),
 

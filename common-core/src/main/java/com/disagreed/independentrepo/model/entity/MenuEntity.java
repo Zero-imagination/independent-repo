@@ -28,6 +28,8 @@ public class MenuEntity {
     @Column(name = "menu_id")
     private Long menuId;
 
+    private String name;
+
     private String description;
 
     @OneToOne

@@ -28,10 +28,13 @@ public class IngredientEntity {
     @Column(name = "ingredient_id")
     private Long ingredientId;
 
+    private String name;
+
     private BigDecimal price;
 
     private Long quantity;
 
+    @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
     private String description;

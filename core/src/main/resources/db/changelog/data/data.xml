@@ -15,4 +15,44 @@
                  relativeToChangelogFile="false"/>
     </changeSet>
 
+    <changeSet id="2024-02-13 17:15:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_category.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:25:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_person.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:30:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_manufacturer.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:32:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_qualification.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:33:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_restaurant.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:35:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_menu.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:40:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_dish.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-13 17:45:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_ingredient.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
 </databaseChangeLog>
