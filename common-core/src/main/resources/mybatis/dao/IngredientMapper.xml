@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.IngredientMapper">
+
+    <resultMap id="Ingredient" type="IngredientEntity" autoMapping="true">
+        <association property="manufacturer" column="manufacturer_id"
+                     javaType="ManufacturerEntity" autoMapping="true" columnPrefix="mf_">
+            <id property="manufacturerId" column="manufacturer_id"/>
+            <association property="city" column="city_id"
+                         javaType="CityEntity" autoMapping="true" columnPrefix="ci_">
+                <id property="cityId" column="city_id"/>
+                <association property="country" column="country_id"
+                             javaType="CountryEntity" autoMapping="true" columnPrefix="co_">
+                    <id property="countryId" column="country_id"/>
+                </association>
+            </association>
+            <association property="person" column="person_id"
+                         javaType="PersonEntity" autoMapping="true" columnPrefix="p_">
+                <id property="personId" column="person_id"/>
+            </association>
+        </association>
+    </resultMap>
+
+    <sql id="AliasBaseIngredientColumns">
+        ${alias}.ingredient_id as ${prefix}ingredient_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.description as ${prefix}description,
+        ${alias}.quantity as ${prefix}quantity,
+        ${alias}.expiration_date as ${prefix}expiration_date,
+        ${alias}.price as ${prefix}price,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.ManufacturerMapper.AliasBaseManufacturerColumns">
+            <property name="alias" value="mf"/>
+            <property name="prefix" value="mf_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.PersonMapper.AliasBasePersonColumns">
+            <property name="alias" value="p"/>
+            <property name="prefix" value="mf_p_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CityMapper.AliasBaseCityColumns">
+            <property name="alias" value="ci"/>
+            <property name="prefix" value="mf_ci_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value="mf_ci_co_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseIngredientColumns">
+        <include refid="AliasBaseIngredientColumns">
+            <property name="alias" value="ing"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="IngredientJoin">
+        inner join manufacturer mf on mf.manufacturer_id = ing.manufacturer_id
+        inner join city ci on ci.city_id = mf.city_id
+        inner join person p on p.person_id = mf.person_id
+        inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+    </sql>
+
+    <select id="getAll" resultMap="Ingredient">
+        select
+        <include refid="BaseIngredientColumns"/>
+        from ingredient ing
+        <include refid="IngredientJoin"/>
+    </select>
+
+    <select id="getByIngredientId" resultMap="Ingredient">
+        select
+        <include refid="BaseIngredientColumns"/>
+        from ingredient ing
+        <include refid="IngredientJoin"/>
+        where ing.ingredient_id = #{ingredientId}
+    </select>
+</mapper>
