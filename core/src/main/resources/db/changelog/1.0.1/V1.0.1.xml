@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-02-13 00:15:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_category.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_category_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:16:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_employee_type.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_employee_type_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:17:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_person.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_person_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:18:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_qualification.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_qualification_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:19:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_restaurant.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_restaurant_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:20:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_employee.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_employee_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:21:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_menu.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_menu_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:22:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_dish.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_dish_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:23:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_manufacturer.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_manufacturer_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2024-02-13 00:24:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/1.0.1/sql/create_ingredient.sql"
+                 relativeToChangelogFile="false"/>
+        <rollback>
+            <sqlFile path="db/changelog/1.0.1/sql/rollback/create_ingredient_rollback.sql"
+                     relativeToChangelogFile="false"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
