@@ -1,0 +1,4 @@
+GET http://localhost:9000/demo/dish/all
+
+###
+GET http://localhost:9000/demo/dish/3

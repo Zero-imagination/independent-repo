@@ -20,5 +20,7 @@
         <mapper resource="mybatis/dao/PersonMapper.xml"/>
         <mapper resource="mybatis/dao/ManufacturerMapper.xml"/>
         <mapper resource="mybatis/dao/IngredientMapper.xml"/>
+        <mapper resource="mybatis/dao/DishMapper.xml"/>
+        <mapper resource="mybatis/dao/QualificationMapper.xml"/>
     </mappers>
 </configuration>
