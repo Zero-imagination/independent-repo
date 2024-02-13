@@ -7,19 +7,26 @@
     <resultMap id="Country" type="CountryEntity" autoMapping="true"/>
 
     <sql id="BaseCountryColumns">
-        country_id,
-        name,
-        national_language,
-        area,
-        population,
-        density,
-        coordinates
+        <include refid="AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="AliasBaseCountryColumns">
+        ${alias}.country_id as ${prefix}country_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.national_language as ${prefix}national_language,
+        ${alias}.area as ${prefix}area,
+        ${alias}.population as ${prefix}population,
+        ${alias}.density as ${prefix}density,
+        ${alias}.coordinates as ${prefix}coordinates
     </sql>
 
     <select id="getByCountryId" resultMap="Country">
         select
         <include refid="BaseCountryColumns"/>
-        from country
+        from country co
         where country_id=#{countryId}
             and action_ind !='D'
     </select>
@@ -27,7 +34,7 @@
     <select id="getByName" resultMap="Country">
         select
         <include refid="BaseCountryColumns"/>
-        from country
+        from country co
         where name = #{name}
             and action_ind !='D'
     </select>
@@ -35,13 +42,13 @@
     <select id="getAll" resultMap="Country">
         select
         <include refid="BaseCountryColumns"/>
-        from country
+        from country co
         where action_ind !='D'
     </select>
 
     <select id="countAll" resultType="Long">
         select count(country_id)
-        from country
+        from country co
         where action_ind !='D'
     </select>
 
@@ -49,7 +56,7 @@
         select
             exists(
                 select country_id
-                from country
+                from country co
                 where country_id = #{countryId}
                     and action_ind != 'D')
     </select>

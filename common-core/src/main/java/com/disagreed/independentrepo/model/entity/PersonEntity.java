@@ -32,5 +32,5 @@ public class PersonEntity {
     private String middleName;
 
     @Column(name = "contact_phone")
-    private Long contactPhone;
+    private String contactPhone;
 }

@@ -11,21 +11,26 @@
         </association>
     </resultMap>
 
+    <sql id="AliasBaseCityColumns">
+        ${alias}.city_id as ${prefix}city_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.is_capital as ${prefix}is_capital,
+        ${alias}.area as ${prefix}area,
+        ${alias}.population as ${prefix}population,
+        ${alias}.density as ${prefix}density,
+        ${alias}.coordinates as ${prefix}coordinates,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value="co_"/>
+        </include>
+    </sql>
+
     <sql id="BaseCityColumns">
-        ci.city_id,
-        ci.name,
-        ci.is_capital,
-        ci.area,
-        ci.population,
-        ci.density,
-        ci.coordinates,
-        co.country_id co_country_id,
-        co.name co_name,
-        co.national_language co_national_language,
-        co.area co_area,
-        co.population co_population,
-        co.density co_density,
-        co.coordinates co_coordinates
+        <include refid="AliasBaseCityColumns">
+            <property name="alias" value="ci"/>
+            <property name="prefix" value=""/>
+        </include>
     </sql>
     
     <sql id="CityJoin">

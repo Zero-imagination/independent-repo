@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.PersonMapper">
+
+    <resultMap id="Person" type="PersonEntity" autoMapping="true"/>
+
+    <sql id="BasePersonColumns">
+        <include refid="AliasBasePersonColumns">
+            <property name="alias" value="p"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="AliasBasePersonColumns">
+        ${alias}.person_id as ${prefix}person_id,
+        ${alias}.first_name as ${prefix}first_name,
+        ${alias}.last_name as ${prefix}last_name,
+        ${alias}.middle_name as ${prefix}middle_name,
+        ${alias}.contact_phone as ${prefix}contact_phone
+    </sql>
+
+    <select id="getByPersonId" resultMap="Person">
+        select
+        <include refid="BasePersonColumns"/>
+        from person p
+        where person_id=#{personId}
+    </select>
+
+    <select id="getAll" resultMap="Person">
+        select
+        <include refid="BasePersonColumns"/>
+        from person p
+    </select>
+</mapper>

@@ -17,5 +17,7 @@
     <mappers>
         <mapper resource="mybatis/dao/CountryMapper.xml"/>
         <mapper resource="mybatis/dao/CityMapper.xml"/>
+        <mapper resource="mybatis/dao/PersonMapper.xml"/>
+        <mapper resource="mybatis/dao/ManufacturerMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.ManufacturerMapper">
+
+    <resultMap id="Manufacturer" type="ManufacturerEntity" autoMapping="true">
+        <association property="city" column="city_id"
+                     javaType="CityEntity" autoMapping="true" columnPrefix="ci_">
+            <id property="cityId" column="city_id"/>
+            <association property="country" column="country_id"
+                         javaType="CountryEntity" autoMapping="true" columnPrefix="co_">
+                <id property="countryId" column="country_id"/>
+            </association>
+        </association>
+        <association property="person" column="person_id"
+                     javaType="PersonEntity" autoMapping="true" columnPrefix="p_">
+            <id property="personId" column="person_id"/>
+        </association>
+    </resultMap>
+
+    <sql id="AliasBaseManufacturerColumns">
+        ${alias}.manufacturer_id as ${prefix}manufacturer_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.description as ${prefix}description,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.PersonMapper.AliasBasePersonColumns">
+            <property name="alias" value="p"/>
+            <property name="prefix" value="p_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CityMapper.AliasBaseCityColumns">
+            <property name="alias" value="ci"/>
+            <property name="prefix" value="ci_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value="ci_co_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseManufacturerColumns">
+        <include refid="AliasBaseManufacturerColumns">
+            <property name="alias" value="mf"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="ManufacturerJoin">
+        inner join city ci on ci.city_id = mf.city_id
+        inner join person p on p.person_id = mf.person_id
+        inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+    </sql>
+
+    <select id="getByManufacturerId" resultMap="Manufacturer">
+        select
+        <include refid="BaseManufacturerColumns"/>
+        from manufacturer mf
+        <include refid="ManufacturerJoin"/>
+        where manufacturer_id = #{manufacturerId}
+    </select>
+
+    <select id="getAll" resultMap="Manufacturer">
+        select
+        <include refid="BaseManufacturerColumns"/>
+        from manufacturer mf
+        <include refid="ManufacturerJoin"/>
+    </select>
+
+</mapper>
