@@ -5,18 +5,14 @@
 <mapper namespace="com.disagreed.independentrepo.repository.mybatis.ManufacturerMapper">
 
     <resultMap id="Manufacturer" type="ManufacturerEntity" autoMapping="true">
-        <association property="city" column="city_id"
-                     javaType="CityEntity" autoMapping="true" columnPrefix="ci_">
-            <id property="cityId" column="city_id"/>
-            <association property="country" column="country_id"
-                         javaType="CountryEntity" autoMapping="true" columnPrefix="co_">
-                <id property="countryId" column="country_id"/>
-            </association>
+        <id property="manufacturerId" column="manufacturer_id"/>
+        <association property="city"
+                     columnPrefix="ci_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.CityMapper.City">
         </association>
-        <association property="person" column="person_id"
-                     javaType="PersonEntity" autoMapping="true" columnPrefix="p_">
-            <id property="personId" column="person_id"/>
-        </association>
+        <association property="person"
+                     columnPrefix="p_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.PersonMapper.Person"/>
     </resultMap>
 
     <sql id="AliasBaseManufacturerColumns">
@@ -26,17 +22,12 @@
 
         <include refid="com.disagreed.independentrepo.repository.mybatis.PersonMapper.AliasBasePersonColumns">
             <property name="alias" value="p"/>
-            <property name="prefix" value="p_"/>
+            <property name="prefix" value="${prefix}p_"/>
         </include>
         ,
         <include refid="com.disagreed.independentrepo.repository.mybatis.CityMapper.AliasBaseCityColumns">
             <property name="alias" value="ci"/>
-            <property name="prefix" value="ci_"/>
-        </include>
-        ,
-        <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
-            <property name="alias" value="co"/>
-            <property name="prefix" value="ci_co_"/>
+            <property name="prefix" value="${prefix}ci_"/>
         </include>
     </sql>
 

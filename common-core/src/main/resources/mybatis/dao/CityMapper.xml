@@ -5,10 +5,10 @@
 <mapper namespace="com.disagreed.independentrepo.repository.mybatis.CityMapper">
 
     <resultMap id="City" type="CityEntity" autoMapping="true">
-        <association property="country" column="country_id"
-                     javaType="CountryEntity" autoMapping="true" columnPrefix="co_">
-            <id property="countryId" column="country_id"/>
-        </association>
+        <id property="cityId" column="city_id"/>
+        <association property="country"
+                     columnPrefix="co_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.CountryMapper.Country"/>
     </resultMap>
 
     <sql id="AliasBaseCityColumns">
@@ -22,7 +22,7 @@
 
         <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
             <property name="alias" value="co"/>
-            <property name="prefix" value="co_"/>
+            <property name="prefix" value="${prefix}co_"/>
         </include>
     </sql>
 

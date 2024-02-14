@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.disagreed.independentrepo.repository.mybatis.QualificationMapper">
 
-    <resultMap id="Dish" type="DishEntity" autoMapping="true"/>
+    <resultMap id="Qualification" type="QualificationEntity" autoMapping="true"/>
 
     <sql id="AliasBaseQualificationColumns">
         ${alias}.qualification_id as ${prefix}qualification_id,
