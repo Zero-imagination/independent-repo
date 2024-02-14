@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.CityMapper">
+
+    <resultMap id="City" type="CityEntity" autoMapping="true">
+        <id property="cityId" column="city_id"/>
+        <association property="country"
+                     columnPrefix="co_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.CountryMapper.Country"/>
+    </resultMap>
+
+    <sql id="AliasBaseCityColumns">
+        ${alias}.city_id as ${prefix}city_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.is_capital as ${prefix}is_capital,
+        ${alias}.area as ${prefix}area,
+        ${alias}.population as ${prefix}population,
+        ${alias}.density as ${prefix}density,
+        ${alias}.coordinates as ${prefix}coordinates,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CountryMapper.AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value="${prefix}co_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseCityColumns">
+        <include refid="AliasBaseCityColumns">
+            <property name="alias" value="ci"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+    
+    <sql id="CityJoin">
+        inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+    </sql>
+
+    <select id="getByCityId" resultMap="City">
+        select 
+        <include refid="BaseCityColumns"/>
+        from city ci
+        <include refid="CityJoin"/>
+        where city_id =#{cityId}
+            and ci.action_ind != 'D'
+    </select>
+
+    <select id="getByName" resultMap="City">
+        select
+        <include refid="BaseCityColumns"/>
+        from city ci
+        <include refid="CityJoin"/>
+        where ci.name = #{name}
+            and ci.action_ind != 'D'
+    </select>
+
+    <select id="getAll" resultMap="City">
+        select
+        <include refid="BaseCityColumns"/>
+        from city ci
+        <include refid="CityJoin"/>
+        where ci.action_ind != 'D'
+    </select>
+
+    <select id="getAllByCountryIds" parameterType="collection" resultMap="City">
+        select
+        <include refid="BaseCityColumns"/>
+        from city ci
+        <include refid="CityJoin"/>
+        where co.country_id in
+            <foreach collection="countryIds" open="(" item="id" separator="," close=")">
+                #{id}
+            </foreach>
+            and ci.action_ind != 'D'
+    </select>
+    
+    <insert id="saveAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        insert into city
+        (name, is_capital, area, population, density, coordinates, country_id)
+        values
+        <foreach collection="cities" item="city" separator=",">
+            (#{city.name}, #{city.isCapital}, #{city.area}, #{city.population},
+            #{city.density}, #{city.coordinates}, #{city.country.countryId})
+        </foreach>
+    </insert>
+
+    <update id="updateAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        update city as c
+        set
+        name = new.name,
+        is_capital = new.isCapital,
+        area = new.area,
+        population = new.population,
+        density = new.density,
+        coordinates = new.coordinates,
+        country_id =  new.countryId,
+        modify_dttm = now(),
+        action_ind = 'U'
+        from
+        <foreach collection="cities" item="city" open='(VALUES' separator=',' close=')'>
+            (#{city.cityId,jdbcType=BIGINT}, #{city.name,jdbcType=VARCHAR}, #{city.isCapital,jdbcType=BOOLEAN},
+                #{city.area,jdbcType=BIGINT}, #{city.population,jdbcType=BIGINT}, #{city.density,jdbcType=REAL},
+                #{city.coordinates,jdbcType=VARCHAR}, #{city.country.countryId,jdbcType=BIGINT})
+        </foreach>
+        as new(cityId, name, isCapital, area, population, density, coordinates, countryId)
+        where c.city_id = new.cityId
+            and action_ind != 'D'
+    </update>
+
+    <update id="markDeleteAll" parameterType="CityEntity" keyProperty="cities.cityId">
+        <if test="ids != null and ids.size() != 0">
+            update city set
+            action_ind = 'D'
+            where city_id
+            in (<foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>);
+        </if>
+    </update>
+</mapper>

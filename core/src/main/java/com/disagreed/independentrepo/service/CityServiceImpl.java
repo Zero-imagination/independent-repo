@@ -1,5 +1,7 @@
 package com.disagreed.independentrepo.service;
 
+import com.disagreed.independentrepo.api.CityService;
+import com.disagreed.independentrepo.api.CountryService;
 import com.disagreed.independentrepo.dto.CityDto;
 import com.disagreed.independentrepo.dto.CountryDto;
 import com.disagreed.independentrepo.mapper.CityMapper;

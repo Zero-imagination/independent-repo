@@ -1,5 +1,6 @@
 package com.disagreed.independentrepo.service;
 
+import com.disagreed.independentrepo.api.CountryService;
 import com.disagreed.independentrepo.dto.CountryDto;
 import com.disagreed.independentrepo.mapper.CountryMapper;
 import com.disagreed.independentrepo.model.entity.CountryEntity;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CountryServiceImpl implements CountryService{
+public class CountryServiceImpl implements CountryService {
 
     private final IndependentCountryRepository countryRepository;
 

@@ -6,6 +6,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="changelog/1.0.0/V1.0.0.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/1.0.1/V1.0.1.xml" relativeToChangelogFile="true"/>
 
     <include file="changelog/data/data.xml" relativeToChangelogFile="true"/>
 

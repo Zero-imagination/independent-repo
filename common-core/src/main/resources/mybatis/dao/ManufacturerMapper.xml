@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.ManufacturerMapper">
+
+    <resultMap id="Manufacturer" type="ManufacturerEntity" autoMapping="true">
+        <id property="manufacturerId" column="manufacturer_id"/>
+        <association property="city"
+                     columnPrefix="ci_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.CityMapper.City">
+        </association>
+        <association property="person"
+                     columnPrefix="p_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.PersonMapper.Person"/>
+    </resultMap>
+
+    <sql id="AliasBaseManufacturerColumns">
+        ${alias}.manufacturer_id as ${prefix}manufacturer_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.description as ${prefix}description,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.PersonMapper.AliasBasePersonColumns">
+            <property name="alias" value="p"/>
+            <property name="prefix" value="${prefix}p_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CityMapper.AliasBaseCityColumns">
+            <property name="alias" value="ci"/>
+            <property name="prefix" value="${prefix}ci_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseManufacturerColumns">
+        <include refid="AliasBaseManufacturerColumns">
+            <property name="alias" value="mf"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="ManufacturerJoin">
+        inner join city ci on ci.city_id = mf.city_id
+        inner join person p on p.person_id = mf.person_id
+        inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+    </sql>
+
+    <select id="getByManufacturerId" resultMap="Manufacturer">
+        select
+        <include refid="BaseManufacturerColumns"/>
+        from manufacturer mf
+        <include refid="ManufacturerJoin"/>
+        where manufacturer_id = #{manufacturerId}
+    </select>
+
+    <select id="getAll" resultMap="Manufacturer">
+        select
+        <include refid="BaseManufacturerColumns"/>
+        from manufacturer mf
+        <include refid="ManufacturerJoin"/>
+    </select>
+
+</mapper>

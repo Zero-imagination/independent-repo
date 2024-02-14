@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.RestaurantMapper">
+
+    <resultMap id="Restaurant" type="RestaurantEntity" autoMapping="true">
+        <id property="restaurantId" column="restaurant_id"/>
+        <collection property="menuList"
+                    columnPrefix="mn_"
+                    ofType="MenuEntity"
+                    resultMap="com.disagreed.independentrepo.repository.mybatis.MenuMapper.Menu">
+        </collection>
+        <collection property="employeeList"
+                    columnPrefix="emp_"
+                    ofType="EmployeeEntity"
+                    resultMap="com.disagreed.independentrepo.repository.mybatis.EmployeeMapper.Employee">
+        </collection>
+    </resultMap>
+
+    <sql id="AliasBaseRestaurantColumns">
+        ${alias}.restaurant_id as ${prefix}restaurant_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.address as ${prefix}address,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.MenuMapper.AliasBaseMenuColumns">
+            <property name="alias" value="mn"/>
+            <property name="prefix" value="${prefix}mn_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.EmployeeMapper.AliasBaseEmployeeColumns">
+            <property name="alias" value="emp"/>
+            <property name="prefix" value="${prefix}emp_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseRestaurantColumns">
+        <include refid="AliasBaseRestaurantColumns">
+            <property name="alias" value="rs"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="RestaurantJoin">
+        inner join menu mn on mn.restaurant_id = rs.restaurant_id
+        inner join employee emp on emp.restaurant_id = rs.restaurant_id
+        <include refid="com.disagreed.independentrepo.repository.mybatis.MenuMapper.MenuJoin"/>
+        <include refid="com.disagreed.independentrepo.repository.mybatis.EmployeeMapper.EmployeeJoin"/>
+    </sql>
+
+    <select id="getByRestaurantId" resultMap="Restaurant">
+        select
+        <include refid="BaseRestaurantColumns"/>
+        from restaurant rs
+        <include refid="RestaurantJoin"/>
+        where rs.restaurant_id = #{restaurantId}
+    </select>
+
+    <select id="getAll" resultMap="Restaurant">
+        select
+        <include refid="BaseRestaurantColumns"/>
+        from restaurant rs
+        <include refid="RestaurantJoin"/>
+    </select>
+</mapper>

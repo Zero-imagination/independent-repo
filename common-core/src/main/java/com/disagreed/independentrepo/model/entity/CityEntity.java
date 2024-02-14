@@ -16,7 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Сущность города.
+ * Город.
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

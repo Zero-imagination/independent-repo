@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.CountryMapper">
+
+    <resultMap id="Country" type="CountryEntity" autoMapping="true"/>
+
+    <sql id="BaseCountryColumns">
+        <include refid="AliasBaseCountryColumns">
+            <property name="alias" value="co"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="AliasBaseCountryColumns">
+        ${alias}.country_id as ${prefix}country_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.national_language as ${prefix}national_language,
+        ${alias}.area as ${prefix}area,
+        ${alias}.population as ${prefix}population,
+        ${alias}.density as ${prefix}density,
+        ${alias}.coordinates as ${prefix}coordinates
+    </sql>
+
+    <select id="getByCountryId" resultMap="Country">
+        select
+        <include refid="BaseCountryColumns"/>
+        from country co
+        where country_id=#{countryId}
+            and action_ind !='D'
+    </select>
+
+    <select id="getByName" resultMap="Country">
+        select
+        <include refid="BaseCountryColumns"/>
+        from country co
+        where name = #{name}
+            and action_ind !='D'
+    </select>
+
+    <select id="getAll" resultMap="Country">
+        select
+        <include refid="BaseCountryColumns"/>
+        from country co
+        where action_ind !='D'
+    </select>
+
+    <select id="countAll" resultType="Long">
+        select count(country_id)
+        from country co
+        where action_ind !='D'
+    </select>
+
+    <select id="exists" resultType="boolean">
+        select
+            exists(
+                select country_id
+                from country co
+                where country_id = #{countryId}
+                    and action_ind != 'D')
+    </select>
+
+</mapper>

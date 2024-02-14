@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.EmployeeMapper">
+
+    <resultMap id="Employee" type="EmployeeEntity" autoMapping="true">
+        <id property="employeeId" column="employee_id"/>
+        <association property="person"
+                     columnPrefix="empp_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.PersonMapper.Person"/>
+        <association property="employeeType"
+                     columnPrefix="emptp_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.EmployeeTypeMapper.EmployeeType"/>
+        <association property="qualification"
+                     columnPrefix="empq_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.QualificationMapper.Qualification"/>
+    </resultMap>
+
+    <sql id="AliasBaseEmployeeColumns">
+        ${alias}.employee_id as ${prefix}employee_id,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.PersonMapper.AliasBasePersonColumns">
+            <property name="alias" value="empp"/>
+            <property name="prefix" value="${prefix}empp_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.EmployeeTypeMapper.AliasBaseEmployeeTypeColumns">
+            <property name="alias" value="emptp"/>
+            <property name="prefix" value="${prefix}emptp_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.QualificationMapper.AliasBaseQualificationColumns">
+            <property name="alias" value="empq"/>
+            <property name="prefix" value="${prefix}empq_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseEmployeeColumns">
+        <include refid="AliasBaseEmployeeColumns">
+            <property name="alias" value="emp"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="EmployeeJoin">
+        inner join person empp on empp.person_id = emp.person_id
+        inner join employee_type emptp on emp.employee_type_id = emptp.employee_type_id
+        inner join qualification empq on emp.qualification_id = empq.qualification_id
+    </sql>
+
+    <select id="getAll" resultMap="Employee">
+        select
+        <include refid="BaseEmployeeColumns"/>
+        from employee emp
+        <include refid="EmployeeJoin"/>
+    </select>
+
+    <select id="getByEmployeeId" resultMap="Employee">
+        select
+        <include refid="BaseEmployeeColumns"/>
+        from employee emp
+        <include refid="EmployeeJoin"/>
+        where employee_id = #{employeeId}
+    </select>
+</mapper>

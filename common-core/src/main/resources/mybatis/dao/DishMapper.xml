@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.DishMapper">
+
+    <resultMap id="Dish" type="DishEntity" autoMapping="true">
+        <id property="dishId" column="dish_id"/>
+        <association property="qualification"
+                     columnPrefix="q_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.QualificationMapper.Qualification"/>
+        <collection property="ingredientList"
+                    columnPrefix="ing_"
+                    ofType="IngredientEntity"
+                    resultMap="com.disagreed.independentrepo.repository.mybatis.IngredientMapper.Ingredient">
+        </collection>
+    </resultMap>
+
+    <sql id="AliasBaseDishColumns">
+        ${alias}.dish_id as ${prefix}dish_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.price as ${prefix}price,
+        ${alias}.description as ${prefix}description,
+        ${alias}.image as ${prefix}image,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.QualificationMapper.AliasBaseQualificationColumns">
+            <property name="alias" value="q"/>
+            <property name="prefix" value="${prefix}q_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.IngredientMapper.AliasBaseIngredientColumns">
+            <property name="alias" value="ing"/>
+            <property name="prefix" value="${prefix}ing_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseDishColumns">
+        <include refid="AliasBaseDishColumns">
+            <property name="alias" value="ds"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="DishJoin">
+        inner join qualification q on ds.qualification_id = q.qualification_id
+        left join ingredient ing on ing.dish_id = ds.dish_id
+        <include refid="com.disagreed.independentrepo.repository.mybatis.IngredientMapper.IngredientJoin"/>
+    </sql>
+
+    <select id="getByDishId" resultMap="Dish">
+        select
+        <include refid="BaseDishColumns"/>
+        from dish ds
+        <include refid="DishJoin"/>
+        where ds.dish_id = #{dishId}
+    </select>
+
+    <select id="getAll" resultMap="Dish">
+        select
+        <include refid="BaseDishColumns"/>
+        from dish ds
+        <include refid="DishJoin"/>
+    </select>
+</mapper>

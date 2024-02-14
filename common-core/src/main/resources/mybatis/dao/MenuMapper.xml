@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.MenuMapper">
+
+    <resultMap id="Menu" type="MenuEntity" autoMapping="true">
+        <id property="menuId" column="menu_id"/>
+        <association property="category"
+                     columnPrefix="cg_"
+                     resultMap="com.disagreed.independentrepo.repository.mybatis.CategoryMapper.Category"/>
+        <collection property="dishList"
+                    columnPrefix="ds_"
+                    ofType="DishEntity"
+                    resultMap="com.disagreed.independentrepo.repository.mybatis.DishMapper.Dish">
+        </collection>
+    </resultMap>
+
+    <sql id="AliasBaseMenuColumns">
+        ${alias}.menu_id as ${prefix}menu_id,
+        ${alias}.name as ${prefix}name,
+        ${alias}.description as ${prefix}description,
+
+        <include refid="com.disagreed.independentrepo.repository.mybatis.DishMapper.AliasBaseDishColumns">
+            <property name="alias" value="ds"/>
+            <property name="prefix" value="${prefix}ds_"/>
+        </include>
+        ,
+        <include refid="com.disagreed.independentrepo.repository.mybatis.CategoryMapper.AliasBaseCategoryColumns">
+            <property name="alias" value="cg"/>
+            <property name="prefix" value="${prefix}cg_"/>
+        </include>
+    </sql>
+
+    <sql id="BaseMenuColumns">
+        <include refid="AliasBaseMenuColumns">
+            <property name="alias" value="mn"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+
+    <sql id="MenuJoin">
+        inner join category cg on mn.category_id = cg.category_id
+        left join dish ds on mn.menu_id = ds.menu_id
+        <include refid="com.disagreed.independentrepo.repository.mybatis.DishMapper.DishJoin"/>
+    </sql>
+
+    <select id="getByMenuId" resultMap="Menu">
+        select
+        <include refid="BaseMenuColumns"/>
+        from menu mn
+        <include refid="MenuJoin"/>
+        where mn.menu_id = #{menuId}
+    </select>
+
+    <select id="getAll" resultMap="Menu">
+        select
+        <include refid="BaseMenuColumns"/>
+        from menu mn
+        <include refid="MenuJoin"/>
+    </select>
+
+</mapper>

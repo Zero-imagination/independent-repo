@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="useGeneratedKeys" value="true"/>
+    </settings>
+    <typeAliases>
+        <package name="com.disagreed.independentrepo.model.entity"/>
+    </typeAliases>
+    <typeHandlers>
+        <package name="com.disagreed.independentrepo.repository.mybatis.handler"/>
+    </typeHandlers>
+    <mappers>
+        <mapper resource="mybatis/dao/CountryMapper.xml"/>
+        <mapper resource="mybatis/dao/CityMapper.xml"/>
+        <mapper resource="mybatis/dao/PersonMapper.xml"/>
+        <mapper resource="mybatis/dao/ManufacturerMapper.xml"/>
+        <mapper resource="mybatis/dao/IngredientMapper.xml"/>
+        <mapper resource="mybatis/dao/DishMapper.xml"/>
+        <mapper resource="mybatis/dao/QualificationMapper.xml"/>
+        <mapper resource="mybatis/dao/CategoryMapper.xml"/>
+        <mapper resource="mybatis/dao/MenuMapper.xml"/>
+        <mapper resource="mybatis/dao/EmployeeMapper.xml"/>
+        <mapper resource="mybatis/dao/EmployeeTypeMapper.xml"/>
+        <mapper resource="mybatis/dao/RestaurantMapper.xml"/>
+    </mappers>
+</configuration>

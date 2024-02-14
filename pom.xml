@@ -25,6 +25,9 @@
 
 
     <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
         <org.mybatis.spring.boot.version>3.0.2</org.mybatis.spring.boot.version>
         <liquibase.version>4.20.0</liquibase.version>

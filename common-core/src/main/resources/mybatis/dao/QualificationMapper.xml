@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.QualificationMapper">
+
+    <resultMap id="Qualification" type="QualificationEntity" autoMapping="true">
+        <id property="qualificationId" column="qualification_id"/>
+    </resultMap>
+
+    <sql id="AliasBaseQualificationColumns">
+        ${alias}.qualification_id as ${prefix}qualification_id,
+        ${alias}.level as ${prefix}level,
+        ${alias}.description as ${prefix}description
+    </sql>
+
+    <sql id="BaseQualificationColumns">
+        <include refid="AliasBasePersonColumns">
+            <property name="alias" value="q"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+</mapper>

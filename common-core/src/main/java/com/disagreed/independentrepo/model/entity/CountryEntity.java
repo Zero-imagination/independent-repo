@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Сущность страны.
+ * Страна.
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
