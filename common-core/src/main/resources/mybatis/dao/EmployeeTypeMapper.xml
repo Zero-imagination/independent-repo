@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.disagreed.independentrepo.repository.mybatis.EmployeeTypeMapper">
+
+    <resultMap id="EmployeeType" type="EmployeeTypeEntity" autoMapping="true">
+        <id property="employeeTypeId" column="employee_type_id"/>
+    </resultMap>
+
+    <sql id="AliasBaseEmployeeTypeColumns">
+        ${alias}.employee_type_id as ${prefix}employee_type_id,
+        ${alias}.name as ${prefix}name
+    </sql>
+
+    <sql id="BaseEmployeeTypeColumns">
+        <include refid="AliasBaseEmployeeTypeColumns">
+            <property name="alias" value="emptp"/>
+            <property name="prefix" value=""/>
+        </include>
+    </sql>
+</mapper>

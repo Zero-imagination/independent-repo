@@ -55,4 +55,14 @@
                  relativeToChangelogFile="false"/>
     </changeSet>
 
+    <changeSet id="2024-02-14 16:45:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_employee_type.sql"
+                  relativeToChangelogFile="false"/>
+    </changeSet>
+
+    <changeSet id="2024-02-14 16:50:00" author="Pshenichnikov_Konstantin">
+        <sqlFile path="db/changelog/data/sql/insert_data_employee.sql"
+                 relativeToChangelogFile="false"/>
+    </changeSet>
+
 </databaseChangeLog>

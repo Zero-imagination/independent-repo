@@ -24,5 +24,7 @@
         <mapper resource="mybatis/dao/QualificationMapper.xml"/>
         <mapper resource="mybatis/dao/CategoryMapper.xml"/>
         <mapper resource="mybatis/dao/MenuMapper.xml"/>
+        <mapper resource="mybatis/dao/EmployeeMapper.xml"/>
+        <mapper resource="mybatis/dao/EmployeeTypeMapper.xml"/>
     </mappers>
 </configuration>
