@@ -1,7 +1,7 @@
 package com.disagreed.independentrepo.controller;
 
 import com.disagreed.independentrepo.api.RestaurantService;
-import com.disagreed.independentrepo.model.entity.RestaurantEntity;
+import com.disagreed.independentrepo.dto.RestaurantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +19,12 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
 
     @GetMapping(value = "/all")
-    public List<RestaurantEntity> getAllRestaurant() {
+    public List<RestaurantDto> getAllRestaurant() {
         return restaurantService.getAll();
     }
 
     @GetMapping(value = "/{restaurantId}")
-    public RestaurantEntity getByRestaurantId(@PathVariable Long restaurantId) {
+    public RestaurantDto getByRestaurantId(@PathVariable Long restaurantId) {
         return restaurantService.getByRestaurantId(restaurantId);
     }
 }

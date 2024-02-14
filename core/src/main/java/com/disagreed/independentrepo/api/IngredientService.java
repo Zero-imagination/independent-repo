@@ -1,13 +1,13 @@
 package com.disagreed.independentrepo.api;
 
-import com.disagreed.independentrepo.model.entity.IngredientEntity;
+import com.disagreed.independentrepo.dto.IngredientDto;
 
 import java.util.List;
 
 public interface IngredientService {
 
-    List<IngredientEntity> getAll();
+    List<IngredientDto> getAll();
 
-    IngredientEntity getByIngredientId(Long ingredientId);
+    IngredientDto getByIngredientId(Long ingredientId);
 
 }

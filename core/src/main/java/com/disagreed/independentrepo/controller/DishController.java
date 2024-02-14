@@ -1,7 +1,7 @@
 package com.disagreed.independentrepo.controller;
 
 import com.disagreed.independentrepo.api.DishService;
-import com.disagreed.independentrepo.model.entity.DishEntity;
+import com.disagreed.independentrepo.dto.DishDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +19,12 @@ public class DishController {
     private final DishService dishService;
 
     @GetMapping(value = "/all")
-    public List<DishEntity> getAllDish() {
+    public List<DishDto> getAllDish() {
         return dishService.getAll();
     }
 
     @GetMapping(value = "/{dishId}")
-    public DishEntity getByIngredientId(@PathVariable Long dishId) {
+    public DishDto getByIngredientId(@PathVariable Long dishId) {
         return dishService.getByDishId(dishId);
     }
 }

@@ -1,7 +1,7 @@
 package com.disagreed.independentrepo.service;
 
 import com.disagreed.independentrepo.api.MenuService;
-import com.disagreed.independentrepo.model.entity.MenuEntity;
+import com.disagreed.independentrepo.dto.MenuDto;
 import com.disagreed.independentrepo.repository.mybatis.MenuMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,15 +12,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
 
-    private final MenuMapper menuMapper;
+    private final MenuMapper menuRepository;
+
+    private final com.disagreed.independentrepo.mapper.MenuMapper menuMapper;
+
     @Override
-    public List<MenuEntity> getAll() {
-        return menuMapper.getAll();
+    public List<MenuDto> getAll() {
+        return menuMapper.toDto(menuRepository.getAll());
     }
 
     @Override
-    public MenuEntity getByMenuId(Long menuId) {
-        return menuMapper.getByMenuId(menuId)
+    public MenuDto getByMenuId(Long menuId) {
+        return menuRepository.getByMenuId(menuId)
+                .map(menuMapper::toDto)
                 .orElseThrow(()-> new RuntimeException("Меню с идентификатором %s не найдено"
                         .formatted(menuId)));
     }

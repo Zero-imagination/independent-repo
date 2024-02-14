@@ -1,12 +1,12 @@
 package com.disagreed.independentrepo.api;
 
-import com.disagreed.independentrepo.model.entity.MenuEntity;
+import com.disagreed.independentrepo.dto.MenuDto;
 
 import java.util.List;
 
 public interface MenuService {
 
-    List<MenuEntity> getAll();
+    List<MenuDto> getAll();
 
-    MenuEntity getByMenuId(Long menuId);
+    MenuDto getByMenuId(Long menuId);
 }

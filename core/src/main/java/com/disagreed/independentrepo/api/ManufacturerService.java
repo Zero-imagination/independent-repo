@@ -1,13 +1,13 @@
 package com.disagreed.independentrepo.api;
 
-import com.disagreed.independentrepo.model.entity.ManufacturerEntity;
+import com.disagreed.independentrepo.dto.ManufacturerDto;
 
 import java.util.List;
 
 public interface ManufacturerService {
 
-    List<ManufacturerEntity> getAll();
+    List<ManufacturerDto> getAll();
 
-    ManufacturerEntity getByManufacturerId(Long manufacturerId);
+    ManufacturerDto getByManufacturerId(Long manufacturerId);
 
 }

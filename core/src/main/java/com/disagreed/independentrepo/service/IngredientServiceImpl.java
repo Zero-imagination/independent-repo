@@ -1,7 +1,7 @@
 package com.disagreed.independentrepo.service;
 
 import com.disagreed.independentrepo.api.IngredientService;
-import com.disagreed.independentrepo.model.entity.IngredientEntity;
+import com.disagreed.independentrepo.dto.IngredientDto;
 import com.disagreed.independentrepo.repository.mybatis.IngredientMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,16 +12,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class IngredientServiceImpl implements IngredientService {
 
-    private final IngredientMapper ingredientMapper;
+    private final IngredientMapper ingredientRepository;
+
+    private final com.disagreed.independentrepo.mapper.IngredientMapper ingredientMapper;
 
     @Override
-    public List<IngredientEntity> getAll() {
-        return ingredientMapper.getAll();
+    public List<IngredientDto> getAll() {
+        return ingredientMapper.toDto(ingredientRepository.getAll());
     }
 
     @Override
-    public IngredientEntity getByIngredientId(Long ingredientId) {
-        return ingredientMapper.getByIngredientId(ingredientId)
+    public IngredientDto getByIngredientId(Long ingredientId) {
+        return ingredientRepository.getByIngredientId(ingredientId)
+                .map(ingredientMapper::toDto)
                 .orElseThrow(()-> new RuntimeException("Ингредиента с идентификатором %s не найдено"
                         .formatted(ingredientId)));
     }

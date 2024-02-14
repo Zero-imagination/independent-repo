@@ -1,12 +1,12 @@
 package com.disagreed.independentrepo.api;
 
-import com.disagreed.independentrepo.model.entity.RestaurantEntity;
+import com.disagreed.independentrepo.dto.RestaurantDto;
 
 import java.util.List;
 
 public interface RestaurantService {
 
-    List<RestaurantEntity> getAll();
+    List<RestaurantDto> getAll();
 
-    RestaurantEntity getByRestaurantId(Long restaurantId);
+    RestaurantDto getByRestaurantId(Long restaurantId);
 }

@@ -1,11 +1,11 @@
 package com.disagreed.independentrepo.api;
 
-import com.disagreed.independentrepo.model.entity.EmployeeEntity;
+import com.disagreed.independentrepo.dto.EmployeeDto;
 
 import java.util.List;
 
 public interface EmployeeService {
-    List<EmployeeEntity> getAll();
+    List<EmployeeDto> getAll();
 
-    EmployeeEntity getByEmployeeId(Long employeeId);
+    EmployeeDto getByEmployeeId(Long employeeId);
 }
