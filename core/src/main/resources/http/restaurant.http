@@ -1,0 +1,4 @@
+GET http://localhost:9000/demo/restaurant/all
+
+###
+GET http://localhost:9000/demo/restaurant/1

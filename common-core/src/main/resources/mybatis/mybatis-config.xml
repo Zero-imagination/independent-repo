@@ -26,5 +26,6 @@
         <mapper resource="mybatis/dao/MenuMapper.xml"/>
         <mapper resource="mybatis/dao/EmployeeMapper.xml"/>
         <mapper resource="mybatis/dao/EmployeeTypeMapper.xml"/>
+        <mapper resource="mybatis/dao/RestaurantMapper.xml"/>
     </mappers>
 </configuration>
