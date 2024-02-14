@@ -24,6 +24,7 @@ spring:
 
   docker:
     compose:
+      file: ./scripts/docker-compose.yaml
       enabled: true
       stop:
         command: stop
@@ -38,3 +39,16 @@ mybatis:
 logging:
   level:
     com.disagreed.independentrepo: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
