@@ -46,5 +46,5 @@ public class DishEntity {
     private QualificationEntity qualification;
 
     @OneToMany(mappedBy = "dish")
-    private List<IngredientEntity> ingredients;
+    private List<IngredientEntity> ingredientList;
 }

@@ -9,7 +9,7 @@
         <association property="qualification"
                      columnPrefix="q_"
                      resultMap="com.disagreed.independentrepo.repository.mybatis.QualificationMapper.Qualification"/>
-        <collection property="ingredients"
+        <collection property="ingredientList"
                     columnPrefix="ing_"
                     ofType="IngredientEntity"
                     resultMap="com.disagreed.independentrepo.repository.mybatis.IngredientMapper.Ingredient">
@@ -42,13 +42,9 @@
     </sql>
 
     <sql id="DishJoin">
-
         inner join qualification q on ds.qualification_id = q.qualification_id
         left join ingredient ing on ing.dish_id = ds.dish_id
-        inner join manufacturer mf on mf.manufacturer_id = ing.manufacturer_id
-        inner join city ci on ci.city_id = mf.city_id
-        inner join person p on p.person_id = mf.person_id
-        inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+        <include refid="com.disagreed.independentrepo.repository.mybatis.IngredientMapper.IngredientJoin"/>
     </sql>
 
     <select id="getByDishId" resultMap="Dish">
