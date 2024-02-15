@@ -1,6 +1,5 @@
 package com.disagreed.independentrepo.dto;
 
-import com.disagreed.independentrepo.model.entity.DishEntity;
 import com.disagreed.independentrepo.model.entity.ManufacturerEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +26,4 @@ public class IngredientDto {
     private String description;
 
     private ManufacturerEntity manufacturer;
-
-    private DishEntity dish;
 }

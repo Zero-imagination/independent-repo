@@ -2,7 +2,6 @@ package com.disagreed.independentrepo.dto;
 
 import com.disagreed.independentrepo.model.entity.CategoryEntity;
 import com.disagreed.independentrepo.model.entity.DishEntity;
-import com.disagreed.independentrepo.model.entity.RestaurantEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +22,4 @@ public class MenuDto {
     private CategoryEntity category;
 
     private List<DishEntity> dishList;
-
-    private RestaurantEntity restaurant;
 }
