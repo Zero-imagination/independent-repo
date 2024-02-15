@@ -14,17 +14,19 @@ Creating a repository that can work with both Hibernate and MyBatis
 В конфигурационном файле application.yml в поле repository.name необходимо указать какой из репозиториев будет использован
 
 Модель данных для ресторана (всего 12 уникальных сущностей)
-    Restaurant:
-    -> Emploee:
-        -> Person
-        -> EmployeeType
+```
+Restaurant:
+-> Emploee:
+    -> Person
+    -> EmployeeType
+    -> Qualification
+-> Menu:
+    -> Category
+    -> Dish:
         -> Qualification
-    -> Menu:
-        -> Category
-        -> Dish:
-            -> Qualification
-            -> Ingredients:
-                -> Manufacturer:
-                    -> Person
-                    -> City:
-                        -> Country
+        -> Ingredients:
+            -> Manufacturer:
+                -> Person
+                -> City:
+                    -> Country
+```
