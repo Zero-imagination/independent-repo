@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -46,14 +45,11 @@ public class DishEntity {
     @Column(name = "image")
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    private MenuEntity menu;
-
     @OneToOne
     @JoinColumn(name = "qualification_id")
     private QualificationEntity qualification;
 
-    @OneToMany(mappedBy = "dish")
+    @OneToMany
+    @JoinColumn(name = "dish_id")
     private List<IngredientEntity> ingredientList;
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -36,10 +37,12 @@ public class RestaurantEntity {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany
+    @JoinColumn(name = "restaurant_id")
     private List<EmployeeEntity> employeeList;
 
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany
+    @JoinColumn(name = "restaurant_id")
     private List<MenuEntity> menuList;
 
 }

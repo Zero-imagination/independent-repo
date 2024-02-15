@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -43,11 +42,8 @@ public class MenuEntity {
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @OneToMany(mappedBy = "menu")
+    @OneToMany
+    @JoinColumn(name = "menu_id")
     private List<DishEntity> dishList;
-
-    @ManyToOne
-    @JoinColumn(name = "restaurant_id")
-    private RestaurantEntity restaurant;
 
 }
