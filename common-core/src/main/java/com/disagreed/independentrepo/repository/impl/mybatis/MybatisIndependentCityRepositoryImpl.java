@@ -1,4 +1,4 @@
-package com.disagreed.independentrepo.repository.impl;
+package com.disagreed.independentrepo.repository.impl.mybatis;
 
 import com.disagreed.independentrepo.model.entity.CityEntity;
 import com.disagreed.independentrepo.repository.api.IndependentCityRepository;

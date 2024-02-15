@@ -1,7 +1,5 @@
 package com.disagreed.independentrepo.dto;
 
-import com.disagreed.independentrepo.model.entity.CityEntity;
-import com.disagreed.independentrepo.model.entity.PersonEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +15,7 @@ public class ManufacturerDto {
 
     private String description;
 
-    private CityEntity city;
+    private CityDto city;
 
-    private PersonEntity person;
+    private PersonDto person;
 }

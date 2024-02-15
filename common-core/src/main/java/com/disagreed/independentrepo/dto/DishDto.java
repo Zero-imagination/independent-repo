@@ -1,8 +1,5 @@
 package com.disagreed.independentrepo.dto;
 
-import com.disagreed.independentrepo.model.entity.IngredientEntity;
-import com.disagreed.independentrepo.model.entity.MenuEntity;
-import com.disagreed.independentrepo.model.entity.QualificationEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,9 +22,7 @@ public class DishDto {
 
     private String image;
 
-    private MenuEntity menu;
+    private QualificationDto qualification;
 
-    private QualificationEntity qualification;
-
-    private List<IngredientEntity> ingredientList;
+    private List<IngredientDto> ingredientList;
 }

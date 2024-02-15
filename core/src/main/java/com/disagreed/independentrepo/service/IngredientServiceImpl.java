@@ -2,7 +2,8 @@ package com.disagreed.independentrepo.service;
 
 import com.disagreed.independentrepo.api.IngredientService;
 import com.disagreed.independentrepo.dto.IngredientDto;
-import com.disagreed.independentrepo.repository.mybatis.IngredientMapper;
+import com.disagreed.independentrepo.mapper.IngredientMapper;
+import com.disagreed.independentrepo.repository.api.IndependentIngredientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class IngredientServiceImpl implements IngredientService {
 
-    private final IngredientMapper ingredientRepository;
+    private final IndependentIngredientRepository ingredientRepository;
 
-    private final com.disagreed.independentrepo.mapper.IngredientMapper ingredientMapper;
+    private final IngredientMapper ingredientMapper;
 
     @Override
     public List<IngredientDto> getAll() {
