@@ -1,4 +1,4 @@
-package com.disagreed.independentrepo.repository.impl;
+package com.disagreed.independentrepo.repository.impl.hibernate;
 
 import com.disagreed.independentrepo.model.ActionIndicatorEnum;
 import com.disagreed.independentrepo.model.entity.CountryEntity;
