@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RestaurantService {
 
-    List<RestaurantDto> getAll();
+    List<RestaurantDto> getAll(Long typeCode);
 
-    RestaurantDto getByRestaurantId(Long restaurantId);
+    RestaurantDto getByRestaurantId(Long restaurantId, Long typeCode);
 }

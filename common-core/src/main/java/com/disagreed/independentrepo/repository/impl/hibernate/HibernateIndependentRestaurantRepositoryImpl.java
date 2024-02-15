@@ -4,15 +4,13 @@ import com.disagreed.independentrepo.model.entity.RestaurantEntity;
 import com.disagreed.independentrepo.repository.api.IndependentRestaurantRepository;
 import com.disagreed.independentrepo.repository.hibernate.HibernateRestaurantRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("hibernateRestaurantStrategy")
 @RequiredArgsConstructor
-@ConditionalOnProperty(value = "repository.name", havingValue = "hibernate")
 public class HibernateIndependentRestaurantRepositoryImpl implements IndependentRestaurantRepository {
 
     private final HibernateRestaurantRepository repository;
