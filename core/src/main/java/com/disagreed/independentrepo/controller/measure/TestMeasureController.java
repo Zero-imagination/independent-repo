@@ -59,8 +59,8 @@ public class TestMeasureController {
          inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
     */
     @GetMapping(value = "/count_join6")
-    public List<DishDto> getAllDish() {
-        return dishService.getAll();
+    public List<DishDto> getAllDish(@RequestParam(defaultValue = "0") Long typeCode) {
+        return dishService.getAll(typeCode);
     }
 
     /*
