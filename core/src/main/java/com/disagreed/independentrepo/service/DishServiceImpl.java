@@ -2,7 +2,8 @@ package com.disagreed.independentrepo.service;
 
 import com.disagreed.independentrepo.api.DishService;
 import com.disagreed.independentrepo.dto.DishDto;
-import com.disagreed.independentrepo.repository.mybatis.DishMapper;
+import com.disagreed.independentrepo.mapper.DishMapper;
+import com.disagreed.independentrepo.repository.api.IndependentDishRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
 
-    private final DishMapper dishRepository;
+    private final IndependentDishRepository dishRepository;
 
-    private final com.disagreed.independentrepo.mapper.DishMapper dishMapper;
+    private final DishMapper dishMapper;
 
     @Override
     public List<DishDto> getAll() {
