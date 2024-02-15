@@ -21,13 +21,14 @@ public class CountryController {
     }
 
     @GetMapping(value = "/all")
-    public List<CountryDto> getAllCountry() {
-        return countryService.getAll();
+    public List<CountryDto> getAllCountry(@RequestParam(defaultValue = "0") Long typeCode) {
+        return countryService.getAll(typeCode);
     }
 
     @GetMapping(value = "/{countryId}")
-    public CountryDto getByCountryId(@PathVariable Long countryId) {
-        return countryService.getByCountryId(countryId);
+    public CountryDto getByCountryId(@PathVariable Long countryId,
+                                     @RequestParam(defaultValue = "0") Long typeCode) {
+        return countryService.getByCountryId(countryId, typeCode);
     }
 
     @GetMapping(value = "/name")

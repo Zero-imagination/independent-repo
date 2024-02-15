@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,12 +20,13 @@ public class RestaurantController {
     private final RestaurantService restaurantService;
 
     @GetMapping(value = "/all")
-    public List<RestaurantDto> getAllRestaurant() {
-        return restaurantService.getAll();
+    public List<RestaurantDto> getAllRestaurant(@RequestParam(defaultValue = "0") Long typeCode) {
+        return restaurantService.getAll(typeCode);
     }
 
     @GetMapping(value = "/{restaurantId}")
-    public RestaurantDto getByRestaurantId(@PathVariable Long restaurantId) {
-        return restaurantService.getByRestaurantId(restaurantId);
+    public RestaurantDto getByRestaurantId(@PathVariable Long restaurantId,
+                                           @RequestParam(defaultValue = "0") Long typeCode) {
+        return restaurantService.getByRestaurantId(restaurantId, typeCode);
     }
 }

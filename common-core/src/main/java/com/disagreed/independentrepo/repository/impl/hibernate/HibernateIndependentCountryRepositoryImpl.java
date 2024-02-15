@@ -4,20 +4,17 @@ import com.disagreed.independentrepo.model.ActionIndicatorEnum;
 import com.disagreed.independentrepo.model.entity.CountryEntity;
 import com.disagreed.independentrepo.repository.api.IndependentCountryRepository;
 import com.disagreed.independentrepo.repository.hibernate.HibernateCountryRepository;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service()
-@ConditionalOnProperty(value = "repository.name", havingValue = "hibernate")
+@Service("hibernateCountryStrategy")
+@RequiredArgsConstructor
 public class HibernateIndependentCountryRepositoryImpl implements IndependentCountryRepository {
 
     private final HibernateCountryRepository hibernateCountryRepository;
-
-    public HibernateIndependentCountryRepositoryImpl(
-            HibernateCountryRepository hibernateCountryRepository) {this.hibernateCountryRepository = hibernateCountryRepository;}
 
     @Override
     public Optional<CountryEntity> getByCountryId(Long countryId) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DishService {
 
-    List<DishDto> getAll();
+    List<DishDto> getAll(Long typeCode);
 
-    DishDto getByDishId(Long dishId);
+    DishDto getByDishId(Long dishId, Long typeCode);
 }

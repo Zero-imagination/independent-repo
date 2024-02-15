@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,12 +20,13 @@ public class DishController {
     private final DishService dishService;
 
     @GetMapping(value = "/all")
-    public List<DishDto> getAllDish() {
-        return dishService.getAll();
+    public List<DishDto> getAllDish(@RequestParam(defaultValue = "0") Long typeCode) {
+        return dishService.getAll(typeCode);
     }
 
     @GetMapping(value = "/{dishId}")
-    public DishDto getByIngredientId(@PathVariable Long dishId) {
-        return dishService.getByDishId(dishId);
+    public DishDto getByIngredientId(@PathVariable Long dishId,
+                                     @RequestParam(defaultValue = "0") Long typeCode) {
+        return dishService.getByDishId(dishId, typeCode);
     }
 }

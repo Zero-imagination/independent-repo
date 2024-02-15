@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface CountryService {
 
-    CountryDto getByCountryId(Long countryId);
+    CountryDto getByCountryId(Long countryId, Long typeCode);
 
     CountryDto getByName(String name);
 
-    List<CountryDto> getAll();
+    List<CountryDto> getAll(Long typeCode);
 
     Long getCountAll();
 

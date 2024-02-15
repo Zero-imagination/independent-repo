@@ -4,16 +4,14 @@ import com.disagreed.independentrepo.model.entity.RestaurantEntity;
 import com.disagreed.independentrepo.repository.api.IndependentRestaurantRepository;
 import com.disagreed.independentrepo.repository.mybatis.RestaurantMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Service
+@Service("mybatisRestaurantStrategy")
 @RequiredArgsConstructor
-@ConditionalOnProperty(value = "repository.name", havingValue = "mybatis")
 public class MybatisIndependentRestaurantRepositoryImpl implements IndependentRestaurantRepository {
 
     private final RestaurantMapper repository;
