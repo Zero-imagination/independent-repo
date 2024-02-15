@@ -35,7 +35,7 @@ public class ControllerProfiler {
 
   private static final Logger logger = LoggerFactory.getLogger(ControllerProfiler.class);
 
-  @Pointcut("execution(* com.disagreed.independentrepo.controller.measure..*.*(..))")
+  @Pointcut("execution(* com.disagreed.independentrepo.repository.impl.*..*.*(..))")
   public void controller() {
   }
 
