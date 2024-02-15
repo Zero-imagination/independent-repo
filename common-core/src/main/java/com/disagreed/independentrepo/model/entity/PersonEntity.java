@@ -2,7 +2,10 @@ package com.disagreed.independentrepo.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +23,8 @@ public class PersonEntity {
 
     @Id
     @Column(name = "person_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_generator")
+    @SequenceGenerator(name = "person_generator", sequenceName = "person_seq", allocationSize = 1)
     private Long personId;
 
     @Column(name = "first_name")
