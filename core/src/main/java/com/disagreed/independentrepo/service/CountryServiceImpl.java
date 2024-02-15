@@ -4,7 +4,8 @@ import com.disagreed.independentrepo.api.CountryService;
 import com.disagreed.independentrepo.dto.CountryDto;
 import com.disagreed.independentrepo.mapper.CountryMapper;
 import com.disagreed.independentrepo.model.entity.CountryEntity;
-import com.disagreed.independentrepo.repository.api.IndependentCountryRepository;
+import com.disagreed.independentrepo.repository.impl.mybatis.MybatisIndependentCountryRepositoryImpl;
+import com.disagreed.independentrepo.service.strategy.CountryStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CountryServiceImpl implements CountryService {
 
-    private final IndependentCountryRepository countryRepository;
+    private final MybatisIndependentCountryRepositoryImpl countryRepository;
+
+    private final CountryStrategy countryStrategy;
 
     private final CountryMapper countryMapper;
 
-    public CountryDto getByCountryId(Long countryId) {
-        CountryEntity countryEntity = countryRepository.getByCountryId(countryId)
+    public CountryDto getByCountryId(Long countryId, Long typeCode) {
+        CountryEntity countryEntity = countryStrategy.getStrategy(typeCode).getByCountryId(countryId)
                 .orElseThrow(()-> new RuntimeException("Страны с идентификатором %d не найдено".formatted(countryId)));
         return countryMapper.toDto(countryEntity);
     }
@@ -30,8 +33,9 @@ public class CountryServiceImpl implements CountryService {
         return countryMapper.toDto(countryEntity);
     }
 
-    public List<CountryDto> getAll() {
-        return countryMapper.toDto(countryRepository.getAll());
+    public List<CountryDto> getAll(Long typeCode) {
+        List<CountryEntity> countryEntities = countryStrategy.getStrategy(typeCode).getAll();
+        return countryMapper.toDto(countryEntities);
     }
 
     public Long getCountAll() {

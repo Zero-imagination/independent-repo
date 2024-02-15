@@ -1,9 +1,9 @@
 package com.disagreed.independentrepo.controller.measure;
 
-import com.disagreed.independentrepo.api.CityService;
+import com.disagreed.independentrepo.api.CountryService;
 import com.disagreed.independentrepo.api.DishService;
 import com.disagreed.independentrepo.api.RestaurantService;
-import com.disagreed.independentrepo.dto.CityDto;
+import com.disagreed.independentrepo.dto.CountryDto;
 import com.disagreed.independentrepo.dto.DishDto;
 import com.disagreed.independentrepo.dto.RestaurantDto;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class TestMeasureController {
 
     private final DishService dishService;
 
-    private final CityService cityService;
+    private final CountryService countryService;
 
     /*
     this rest execute query with 13 join:
@@ -64,12 +64,11 @@ public class TestMeasureController {
     }
 
     /*
-    this rest execute query with 1 join:
-    from city ci
-         inner join country co on co.country_id = ci.country_id and co.action_ind != 'D'
+    this rest execute query without join:
+    from country co
     */
-    @GetMapping(value = "/count_join1")
-    public List<CityDto> getAllCity() {
-        return cityService.getAll();
+    @GetMapping(value = "/count_join0")
+    public List<CountryDto> getAllCountry(@RequestParam(defaultValue = "0") Long typeCode) {
+        return countryService.getAll(typeCode);
     }
 }
