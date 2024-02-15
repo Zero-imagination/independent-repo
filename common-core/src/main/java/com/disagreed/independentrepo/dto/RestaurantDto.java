@@ -1,7 +1,5 @@
 package com.disagreed.independentrepo.dto;
 
-import com.disagreed.independentrepo.model.entity.EmployeeEntity;
-import com.disagreed.independentrepo.model.entity.MenuEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +17,7 @@ public class RestaurantDto {
 
     private String address;
 
-    private List<EmployeeEntity> employeeList;
+    private List<EmployeeDto> employeeList;
 
-    private List<MenuEntity> menuList;
+    private List<MenuDto> menuList;
 }
