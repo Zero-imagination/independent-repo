@@ -6,13 +6,17 @@ import com.disagreed.independentrepo.api.RestaurantService;
 import com.disagreed.independentrepo.dto.CountryDto;
 import com.disagreed.independentrepo.dto.DishDto;
 import com.disagreed.independentrepo.dto.RestaurantDto;
+import com.disagreed.independentrepo.enums.RepositoryType;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,6 +29,22 @@ public class TestMeasureController {
     private final DishService dishService;
 
     private final CountryService countryService;
+
+    @GetMapping(value = "/start/{count}")
+    public void startTest (@PathVariable Long count) {
+        for (int iterator = 0; iterator < count; iterator++) {
+            Arrays.stream(RepositoryType.values()).forEach(this::executeService);
+        }
+    }
+
+    @SneakyThrows
+    private void executeService(RepositoryType repositoryType) {
+        Long typeCode = repositoryType.getTypeCode();
+        restaurantService.getAll(typeCode);
+        dishService.getAll(typeCode);
+        countryService.getAll(typeCode);
+        Thread.sleep(600);
+    }
 
     /*
     this rest execute query with 13 join:
