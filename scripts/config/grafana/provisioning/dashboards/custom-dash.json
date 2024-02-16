@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 3,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -34,6 +34,75 @@
       "panels": [],
       "title": "Запросы с помощью mybatis",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 1
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "method_timed_seconds_count{class=~\".*mybatis.*\"}",
+          "instant": false,
+          "legendFormat": "{{class}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Количество запросов mybatis",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -100,7 +169,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 1
+        "y": 7
       },
       "id": 7,
       "options": {
@@ -202,7 +271,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 1
+        "y": 7
       },
       "id": 9,
       "options": {
@@ -225,7 +294,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "editorMode": "code",
+          "editorMode": "builder",
           "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.mybatis.MybatisIndependentDishRepositoryImpl\", method=\"getAll\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.mybatis.MybatisIndependentDishRepositoryImpl\", method=\"getAll\"}",
           "instant": false,
           "legendFormat": "{{method}}",
@@ -300,7 +369,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 1
+        "y": 7
       },
       "id": 10,
       "options": {
@@ -324,7 +393,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "disableTextWrap": false,
-          "editorMode": "code",
+          "editorMode": "builder",
           "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.mybatis.MybatisIndependentCountryRepositoryImpl\", method=\"getAll\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.mybatis.MybatisIndependentCountryRepositoryImpl\", method=\"getAll\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
@@ -343,11 +412,85 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 14
       },
       "id": 2,
       "title": "Запросы с помощью hibernate",
       "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 18,
+        "x": 0,
+        "y": 15
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "method_timed_seconds_count{class=~\".*hibernate.*\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{class}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Количество запросов hibernate",
+      "type": "stat"
     },
     {
       "datasource": {
@@ -439,7 +582,7 @@
         "h": 7,
         "w": 6,
         "x": 0,
-        "y": 9
+        "y": 21
       },
       "id": 1,
       "options": {
@@ -544,7 +687,7 @@
         "h": 7,
         "w": 6,
         "x": 6,
-        "y": 9
+        "y": 21
       },
       "id": 5,
       "options": {
@@ -569,7 +712,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentDishRepositoryImpl\", method=\"getAll\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentDishRepositoryImpl\", method=\"getAll\"}",
+          "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentDishRepositoryImpl\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentDishRepositoryImpl\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -647,7 +790,7 @@
         "h": 7,
         "w": 6,
         "x": 12,
-        "y": 9
+        "y": 21
       },
       "id": 6,
       "options": {
@@ -672,7 +815,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "code",
-          "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentCountryRepositoryImpl\",method=\"getAll\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentCountryRepositoryImpl\", method=\"getAll\"}",
+          "expr": "method_timed_seconds_sum{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentCountryRepositoryImpl\"} / method_timed_seconds_count{class=\"com.disagreed.independentrepo.repository.impl.hibernate.HibernateIndependentCountryRepositoryImpl\"}",
           "fullMetaSearch": false,
           "hide": false,
           "includeNullMetadata": true,
@@ -687,20 +830,20 @@
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Custom",
   "uid": "c68daf7a-43be-46eb-8f50-9e4968e7dd48",
-  "version": 5,
+  "version": 2,
   "weekStart": ""
 }

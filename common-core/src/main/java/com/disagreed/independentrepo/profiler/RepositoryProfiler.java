@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Aspect
 @Component
-public class ControllerProfiler {
+public class RepositoryProfiler {
 
   private static Map<String, Object> timedAnnotationData = new HashMap<>();
 
@@ -33,7 +33,7 @@ public class ControllerProfiler {
   private static final MonitoringTimed timed =
       Javanna.createAnnotation(MonitoringTimed.class, timedAnnotationData);
 
-  private static final Logger logger = LoggerFactory.getLogger(ControllerProfiler.class);
+  private static final Logger logger = LoggerFactory.getLogger(RepositoryProfiler.class);
 
   @Pointcut("execution(* com.disagreed.independentrepo.repository.impl.*..*.*(..))")
   public void controller() {
