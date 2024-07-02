@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 9001
   servlet:
     context-path: /demo
     session:
@@ -28,6 +28,10 @@ spring:
       enabled: true
       stop:
         command: stop
+
+  kafka:
+    producer:
+      bootstrap-servers: kafka:9092
 
 ## hibernate or mybatis
 repository:
