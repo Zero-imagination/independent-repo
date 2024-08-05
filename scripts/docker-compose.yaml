@@ -65,7 +65,7 @@ services:
 
   camunda:
     container_name: camunda
-    image: camunda/camunda-bpm-platform:7.20.0
+    image: camunda/camunda-bpm-platform:7.16.0
     ports:
       - "8080:8080"
     networks:
