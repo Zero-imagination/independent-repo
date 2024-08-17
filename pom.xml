@@ -21,8 +21,8 @@
     <modules>
         <module>core</module>
         <module>common-core</module>
+        <module>build-tools</module>
     </modules>
-
 
     <properties>
         <common.module.version>0.0.1-SNAPSHOT</common.module.version>
@@ -176,6 +176,11 @@
                         <version>${checkstyle.plugin.version}</version>
                         <dependencies>
                             <dependency>
+                                <groupId>com.disagreed</groupId>
+                                <artifactId>common-build-tools</artifactId>
+                                <version>${common.module.version}</version>
+                            </dependency>
+                            <dependency>
                                 <groupId>com.puppycrawl.tools</groupId>
                                 <artifactId>checkstyle</artifactId>
                                 <version>8.43</version>
@@ -183,8 +188,8 @@
                         </dependencies>
 
                         <configuration>
-                            <configLocation>/common-core/src/main/resources/checkstyle/checkstyle.xml</configLocation>
-                            <suppressionsLocation>/common-core/src/main/resources/checkstyle/checkstyle_suppress.xml</suppressionsLocation>
+                            <configLocation>/checkstyle/checkstyle.xml</configLocation>
+                            <suppressionsLocation>/checkstyle/checkstyle_suppress.xml</suppressionsLocation>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
                             <failOnViolation>true</failOnViolation>
