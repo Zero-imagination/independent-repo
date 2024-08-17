@@ -5,7 +5,7 @@
 <module name="Checker">
 
     <module name="SuppressionFilter">
-        <property name="file" value="./common-core/src/main/resources/checkstyle/checkstyle_suppress.xml"/>
+        <property name="file" value="/checkstyle/checkstyle_suppress.xml"/>
     </module>
 
     <module name="SuppressWarningsFilter"/>
