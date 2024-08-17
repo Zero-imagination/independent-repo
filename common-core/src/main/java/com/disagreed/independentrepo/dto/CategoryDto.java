@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Категория меню.
+ * (пример: Праздничное меню)
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

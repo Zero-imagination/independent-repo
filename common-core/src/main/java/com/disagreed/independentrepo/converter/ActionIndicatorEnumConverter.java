@@ -6,6 +6,9 @@ import jakarta.persistence.Converter;
 
 import java.util.stream.Stream;
 
+/**
+ * Конвертер для преобразования значения коллекции ActionIndicatorEnum в строку.
+ */
 @Converter(autoApply = true)
 public class ActionIndicatorEnumConverter implements AttributeConverter<ActionIndicatorEnum, String> {
 

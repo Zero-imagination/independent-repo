@@ -8,9 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Hibernate репозиторий для сущности RestaurantEntity.
+ */
 @Repository
 public interface HibernateRestaurantRepository extends JpaRepository<RestaurantEntity, Long> {
 
+    /**
+     * Получить информацию о ресторане по его идентификатору.
+     *
+     * @param restaurantId идентификатор ресторана
+     */
     @Query("select restaurant from RestaurantEntity restaurant where restaurant.restaurantId=:id")
     Optional<RestaurantEntity> findRestaurantEntityById(@Param("id") Long restaurantId);
 

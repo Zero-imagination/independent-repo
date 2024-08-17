@@ -8,9 +8,17 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Hibernate репозиторий для сущности MenuEntity.
+ */
 @Repository
 public interface HibernateMenuRepository extends JpaRepository<MenuEntity, Long> {
 
+    /**
+     * Получить информацию о меню по его идентификатору.
+     *
+     * @param menuId идентификатор меню
+     */
     @Query("select menu from MenuEntity menu where menu.menuId=:id")
     Optional<MenuEntity> findMenuEntityById(@Param("id") Long menuId);
 }

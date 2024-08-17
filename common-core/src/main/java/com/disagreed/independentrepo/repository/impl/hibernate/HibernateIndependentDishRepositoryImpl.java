@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Hibernate реализация интерфейса CRUD операций для класса DishEntity.
+ */
 @Service("hibernateDishStrategy")
 @RequiredArgsConstructor
 public class HibernateIndependentDishRepositoryImpl implements IndependentDishRepository {

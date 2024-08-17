@@ -15,11 +15,19 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Профилировщик для репозиториев,
+ * который отслеживает временя выполнения методов.
+ */
 @Aspect
 @Component
 public class RepositoryProfiler {
 
   private static Map<String, Object> timedAnnotationData = new HashMap<>();
+
+  private static final MonitoringTimed TIMED = Javanna.createAnnotation(MonitoringTimed.class, timedAnnotationData);
+
+  private static final Logger logger = LoggerFactory.getLogger(RepositoryProfiler.class);
 
   static {
     double[] percentiles = {0.90, 0.95, 0.9999};
@@ -30,17 +38,18 @@ public class RepositoryProfiler {
   @Autowired
   private MonitoringTimedAspect timedAspect;
 
-  private static final MonitoringTimed timed =
-      Javanna.createAnnotation(MonitoringTimed.class, timedAnnotationData);
-
-  private static final Logger logger = LoggerFactory.getLogger(RepositoryProfiler.class);
-
+  /**
+   * Указатель для методов, которые будут измеряться.
+   */
   @Pointcut("execution(* com.disagreed.independentrepo.repository.impl.*..*.*(..))")
   public void controller() {
   }
 
+  /**
+   * Профиль связывающий указатель и с кастомной аннотацией.
+   */
   @Around("controller()")
   public Object profile(ProceedingJoinPoint pjp) throws Throwable {
-    return timedAspect.timeThisMethod(pjp, timed);
+      return timedAspect.timeThisMethod(pjp, TIMED);
   }
 }

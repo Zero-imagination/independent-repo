@@ -1,5 +1,8 @@
 package com.disagreed.independentrepo.model;
 
+/**
+ * Перечисления с названиями репозиториев.
+ */
 public enum RepositoryName {
 
     HIBERNATE("hibernate"),
@@ -8,7 +11,9 @@ public enum RepositoryName {
 
     private final String name;
 
-    RepositoryName(String name) {this.name = name;}
+    RepositoryName(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;

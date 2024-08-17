@@ -10,15 +10,33 @@ import org.springframework.stereotype.Repository;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Hibernate репозиторий для сущности CityEntity.
+ */
 @Repository
 public interface HibernateCityRepository extends JpaRepository<CityEntity, Long> {
 
+    /**
+     * Получить город по его названию.
+     *
+     * @param name название города
+     */
     @Query("select city from CityEntity city where city.name = :name and city.actionInd != 'D'")
     Optional<CityEntity> findCityEntityByName(@Param("name") String name);
 
+    /**
+     * Получить информацию о городе по его идентификатору.
+     *
+     * @param cityId идентификатор города
+     */
     @Query("select city from CityEntity city where city.cityId=:id and city.actionInd <> 'D'")
     Optional<CityEntity> findCityEntityByCityId(@Param("id") Long cityId);
 
+    /**
+     * Пометить удаленными города по их идентификаторам.
+     *
+     * @param ids список идентификаторов городов
+     */
     @Modifying
     @Query(value = "update city set action_ind = 'D' where city.city_id in :ids", nativeQuery = true)
     int markDeleteAll(@Param("ids") Collection<Long> ids);

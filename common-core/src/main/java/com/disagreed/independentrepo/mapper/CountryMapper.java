@@ -13,11 +13,17 @@ public interface CountryMapper extends AbstractMapper<CountryEntity, CountryDto>
     @Override
     CountryEntity toEntity(CountryDto dto);
 
+    /**
+     * Метод для конвертации CountryDto в CountryEntity.
+     */
+    List<CountryEntity> toEntity(Collection<CountryDto> countryDtos);
+
     @Override
     CountryDto toDto(CountryEntity entity);
 
-    List<CountryEntity> toEntity(Collection<CountryDto> countryDtos);
-
+    /**
+     * Метод для конвертации CountryEntity в CountryDto.
+     */
     List<CountryDto> toDto(Collection<CountryEntity> countryEntities);
 
 }

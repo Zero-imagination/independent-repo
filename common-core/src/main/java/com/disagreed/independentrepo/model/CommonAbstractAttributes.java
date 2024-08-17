@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class CommonAbstractAttributes extends BaseAbstractSystemAttributes{
+public abstract class CommonAbstractAttributes extends BaseAbstractSystemAttributes {
 
     /**
      * Площадь.

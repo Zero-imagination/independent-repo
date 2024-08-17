@@ -13,6 +13,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Hibernate реализация интерфейса CRUD операций для класса CityEntity.
+ */
 @Service
 @ConditionalOnProperty(value = "repository.name", havingValue = "hibernate")
 public class HibernateIndependentCityRepositoryImpl implements IndependentCityRepository {

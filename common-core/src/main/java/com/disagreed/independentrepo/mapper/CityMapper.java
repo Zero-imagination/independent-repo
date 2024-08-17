@@ -17,11 +17,17 @@ public interface CityMapper extends AbstractMapper<CityEntity, CityDto> {
     @Mapping(target = "actionInd", ignore = true)
     CityEntity toEntity(CityDto dto);
 
+    /**
+     * Метод для конвертации CityDto в CityEntity.
+     */
+    List<CityEntity> toEntity(Collection<CityDto> cityDtos);
+
     @Override
     CityDto toDto(CityEntity entity);
 
-    List<CityEntity> toEntity(Collection<CityDto> cityDtos);
-
+    /**
+     * Метод для конвертации CityEntity в CityDto.
+     */
     List<CityDto> toDto(Collection<CityEntity> cityEntities);
 
 }

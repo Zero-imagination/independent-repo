@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Mybatis реализация интерфейса CRUD операций для класса IngredientEntity.
+ */
 @Service
 @RequiredArgsConstructor
 @ConditionalOnProperty(value = "repository.name", havingValue = "mybatis")

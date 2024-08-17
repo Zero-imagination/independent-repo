@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * Информация о городе.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

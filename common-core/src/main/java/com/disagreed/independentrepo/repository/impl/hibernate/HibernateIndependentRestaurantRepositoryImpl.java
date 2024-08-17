@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Hibernate реализация интерфейса CRUD операций для класса RestaurantEntity.
+ */
 @Service("hibernateRestaurantStrategy")
 @RequiredArgsConstructor
 public class HibernateIndependentRestaurantRepositoryImpl implements IndependentRestaurantRepository {

@@ -9,13 +9,21 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface RestaurantMapper extends AbstractMapper<RestaurantEntity, RestaurantDto> {
+
     @Override
     RestaurantDto toDto(RestaurantEntity entity);
+
+    /**
+     * Метод для конвертации RestaurantEntity в RestaurantDto.
+     */
+    List<RestaurantDto> toDto(Collection<RestaurantEntity> entities);
 
     @Override
     RestaurantEntity toEntity(RestaurantDto dto);
 
+    /**
+     * Метод для конвертации RestaurantDto в RestaurantEntity.
+     */
     List<RestaurantEntity> toEntity(Collection<RestaurantDto> dtos);
 
-    List<RestaurantDto> toDto(Collection<RestaurantEntity> entities);
 }
