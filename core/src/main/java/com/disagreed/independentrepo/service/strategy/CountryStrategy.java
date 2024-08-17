@@ -8,12 +8,20 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Стратегия выбора репозитория для Country.
+ */
 @RequiredArgsConstructor
 @Service
 public class CountryStrategy {
 
     private final Map<String, IndependentCountryRepository> countryStrategies;
 
+    /**
+     * Получить реализацию интерфейса репозитория по его идентификатору типа.
+     *
+     * @param typeCode идентификатор типа репозитория
+     */
     public IndependentCountryRepository getStrategy(Long typeCode) {
         String serviceName = RepositoryType.getServiceNameByTypeCode(typeCode) + CountryStrategy.class.getSimpleName();
         return Optional.ofNullable(countryStrategies.get(serviceName))

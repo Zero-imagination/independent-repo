@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса EmployeeDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
@@ -25,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto getByEmployeeId(Long employeeId) {
         return employeeRepository.getByEmployeeId(employeeId)
                 .map(employeeMapper::toDto)
-                .orElseThrow(()-> new RuntimeException("Работника с идентификатором %s не найдено"
+                .orElseThrow(() -> new RuntimeException("Работника с идентификатором %s не найдено"
                         .formatted(employeeId)));
     }
 }

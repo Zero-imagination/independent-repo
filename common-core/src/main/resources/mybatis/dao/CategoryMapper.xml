@@ -15,7 +15,7 @@
     </sql>
 
     <sql id="BaseCategoryColumns">
-        <include refid="AliasBasePersonColumns">
+        <include refid="AliasBaseCategoryColumns">
             <property name="alias" value="cg"/>
             <property name="prefix" value=""/>
         </include>

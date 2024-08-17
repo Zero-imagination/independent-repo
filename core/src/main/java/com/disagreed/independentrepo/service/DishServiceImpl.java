@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса DishDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class DishServiceImpl implements DishService {
@@ -29,7 +32,7 @@ public class DishServiceImpl implements DishService {
         return dishStrategy.getStrategy(typeCode)
                 .getByDishId(dishId)
                 .map(dishMapper::toDto)
-                .orElseThrow(()-> new RuntimeException("Блюда с идентификатором %s не найдено"
+                .orElseThrow(() -> new RuntimeException("Блюда с идентификатором %s не найдено"
                         .formatted(dishId)));
     }
 }
