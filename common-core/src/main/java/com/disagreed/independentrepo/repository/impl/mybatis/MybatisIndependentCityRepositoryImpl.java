@@ -10,6 +10,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Mybatis реализация интерфейса CRUD операций для класса CityEntity.
+ */
 @Service
 @ConditionalOnProperty(value = "repository.name", havingValue = "mybatis")
 public class MybatisIndependentCityRepositoryImpl implements IndependentCityRepository {

@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса RestaurantDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class RestaurantServiceImpl implements RestaurantService {
@@ -30,7 +33,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantStrategy.getStrategy(typeCode)
                 .getByRestaurantId(restaurantId)
                 .map(restaurantMapper::toDto)
-                .orElseThrow(()-> new RuntimeException("Ресторан с идентификатором %d не найдено"
+                .orElseThrow(() -> new RuntimeException("Ресторан с идентификатором %d не найдено"
                         .formatted(restaurantId)));
     }
 }

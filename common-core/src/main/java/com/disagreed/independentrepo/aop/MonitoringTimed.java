@@ -5,13 +5,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * All fields are same as in {@link io.micrometer.core.annotation.Timed}.
+ */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MonitoringTimed {
 
-  /**
-   * All fields are same as in {@link io.micrometer.core.annotation.Timed}
-   */
   String value() default "";
 
   String[] extraTags() default {};

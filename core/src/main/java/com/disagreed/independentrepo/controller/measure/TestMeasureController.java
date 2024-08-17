@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Контроллер для измерения времени выполнения методов MyBatis и Hibernate.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/measure", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,8 +33,17 @@ public class TestMeasureController {
 
     private final CountryService countryService;
 
+    /**
+     * Метод для запуска теста.
+     * В тесте участвуют три сервиса, каждый из них выполняет sql запрос к бд,
+     * restaurantService - запрос с 13 join
+     * dishService - запрос с 6 join
+     * countryService - запрос без join
+     *
+     * @param count количество выполненных запросов.
+     */
     @GetMapping(value = "/start/{count}")
-    public void startTest (@PathVariable Long count) {
+    public void startTest(@PathVariable Long count) {
         for (int iterator = 0; iterator < count; iterator++) {
             Arrays.stream(RepositoryType.values()).forEach(this::executeService);
         }
@@ -43,7 +55,6 @@ public class TestMeasureController {
         restaurantService.getAll(typeCode);
         dishService.getAll(typeCode);
         countryService.getAll(typeCode);
-        Thread.sleep(600);
     }
 
     /*

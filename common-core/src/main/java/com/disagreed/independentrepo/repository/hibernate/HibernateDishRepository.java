@@ -7,8 +7,16 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
+/**
+ * Hibernate репозиторий для сущности DishEntity.
+ */
 public interface HibernateDishRepository extends JpaRepository<DishEntity, Long> {
 
+    /**
+     * Получить информацию о блюде по его идентификатору.
+     *
+     * @param dishId идентификатор блюда
+     */
     @Query("select dish from DishEntity dish where dish.dishId=:id")
     Optional<DishEntity> findDishEntityById(@Param("id") Long dishId);
 }

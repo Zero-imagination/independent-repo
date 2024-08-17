@@ -15,6 +15,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Реализация сервиса CRUD операций для класса CityDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class CityServiceImpl implements CityService {
@@ -50,14 +53,14 @@ public class CityServiceImpl implements CityService {
     @Override
     public CityDto getByCityId(Long cityId) {
         CityEntity cityEntity = cityRepository.getByCityId(cityId)
-                .orElseThrow(()-> new RuntimeException("Города с идентификатором %s не найдено".formatted(cityId)));
+                .orElseThrow(() -> new RuntimeException("Города с идентификатором %s не найдено".formatted(cityId)));
         return cityMapper.toDto(cityEntity);
     }
 
     @Override
     public CityDto getByName(String name) {
         CityEntity cityEntity = cityRepository.getByName(name)
-                .orElseThrow(()-> new RuntimeException("Города с названием %s не найдено".formatted(name)));
+                .orElseThrow(() -> new RuntimeException("Города с названием %s не найдено".formatted(name)));
         return cityMapper.toDto(cityEntity);
     }
 

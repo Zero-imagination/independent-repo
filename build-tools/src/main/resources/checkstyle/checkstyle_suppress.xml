@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC "-//Puppy Crawl//DTD Suppressions 1.1//EN" "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+<suppressions>
+    <suppress checks=".*" files="[/\\]target[/\\]"/>
+    <suppress checks="LineLength" files=".*\.properties"/>
+    <suppress checks="LineLength" files=".*Enum\.java"/>
+    <suppress checks="LineLength" files=".*Type\.java"/>
+    <suppress checks="MultipleStringLiterals" files=".*Enum\.java"/>
+    <suppress checks="MultipleStringLiterals" files=".*Type\.java"/>
+    <suppress checks="LineLength" files=".*FeignClient.*\.java"/>
+    <suppress checks="MissingJavadocMethod" files=".*Test.*\.java"/>
+    <suppress checks="MissingJavadocType" files=".*Test\.java"/>
+    <suppress checks="MissingJavadocMethod" files=".*Builder\.java"/>
+    <suppress checks="MissingJavadocType" files=".*Builder\.java"/>
+    <suppress checks="MultipleStringLiterals" files=".*Test\.java"/>
+    <suppress checks="MethodName" files=".*Test\.java"/>
+    <suppress checks="AnnotationUseStyle" files=".*Test.*\.java"/>
+
+    <suppress checks="MissingJavadocMethod" files=".aop.*\.java"/>
+</suppressions>

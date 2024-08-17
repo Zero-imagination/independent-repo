@@ -17,14 +17,14 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * Taken from {@link io.micrometer.core.aop.TimedAspect}.
+ */
 @Aspect
 @Slf4j
 @SuppressWarnings("WeakerAccess")
 public class MonitoringTimedAspect {
 
-  /**
-   * Taken from {@link io.micrometer.core.aop.TimedAspect}
-   */
   public static final String DEFAULT_METRIC_NAME = "method.timed";
 
   public static final String EXCEPTION_TAG = "exception";
@@ -128,6 +128,11 @@ public class MonitoringTimedAspect {
     return response;
   }
 
+  public Object timeThisMethod(ProceedingJoinPoint pjp, MonitoringTimed timed) throws Throwable {
+    final String metricName = generateMetricName(pjp, timed);
+    return timeThisMethod(pjp, timed, metricName);
+  }
+
   private String generateMetricName(ProceedingJoinPoint pjp, MonitoringTimed timed) {
     if (!timed.value().isEmpty()) {
       return timed.value();
@@ -143,11 +148,6 @@ public class MonitoringTimedAspect {
       method = pjp.getTarget().getClass().getMethod(method.getName(), method.getParameterTypes());
       timed = method.getAnnotation(MonitoringTimed.class);
     }
-    final String metricName = generateMetricName(pjp, timed);
-    return timeThisMethod(pjp, timed, metricName);
-  }
-
-  public Object timeThisMethod(ProceedingJoinPoint pjp, MonitoringTimed timed) throws Throwable {
     final String metricName = generateMetricName(pjp, timed);
     return timeThisMethod(pjp, timed, metricName);
   }

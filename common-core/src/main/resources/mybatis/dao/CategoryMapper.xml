@@ -15,10 +15,24 @@
     </sql>
 
     <sql id="BaseCategoryColumns">
-        <include refid="AliasBasePersonColumns">
+        <include refid="AliasBaseCategoryColumns">
             <property name="alias" value="cg"/>
             <property name="prefix" value=""/>
         </include>
     </sql>
+
+    <select id="getByCategoryId" resultMap="Category">
+        select
+        <include refid="BaseCategoryColumns"/>
+        from category c
+        where c.category_id =#{categoryId}
+    </select>
+
+    <select id="getAll" resultMap="Category">
+        select
+        <include refid="BaseCategoryColumns"/>
+        from category c
+        where c.category_id =#{categoryId}
+    </select>
 
 </mapper>

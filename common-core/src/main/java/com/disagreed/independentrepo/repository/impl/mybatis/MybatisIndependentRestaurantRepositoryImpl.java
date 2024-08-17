@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Mybatis реализация интерфейса CRUD операций для класса RestaurantEntity.
+ */
 @Service("mybatisRestaurantStrategy")
 @RequiredArgsConstructor
 public class MybatisIndependentRestaurantRepositoryImpl implements IndependentRestaurantRepository {

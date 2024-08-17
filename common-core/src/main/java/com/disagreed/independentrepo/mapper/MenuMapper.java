@@ -9,13 +9,21 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MenuMapper extends AbstractMapper<MenuEntity, MenuDto> {
+
     @Override
     MenuDto toDto(MenuEntity entity);
+
+    /**
+     * Метод для конвертации MenuEntity в MenuDto.
+     */
+    List<MenuDto> toDto(Collection<MenuEntity> entities);
 
     @Override
     MenuEntity toEntity(MenuDto dto);
 
+    /**
+     * Метод для конвертации MenuDto в MenuEntity.
+     */
     List<MenuEntity> toEntity(Collection<MenuDto> dtos);
 
-    List<MenuDto> toDto(Collection<MenuEntity> entities);
 }

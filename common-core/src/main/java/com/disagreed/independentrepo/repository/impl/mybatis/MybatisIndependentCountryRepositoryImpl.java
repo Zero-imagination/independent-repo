@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Mybatis реализация интерфейса CRUD операций для класса CountryEntity.
+ */
 @Service("mybatisCountryStrategy")
 @RequiredArgsConstructor
 public class MybatisIndependentCountryRepositoryImpl implements IndependentCountryRepository {

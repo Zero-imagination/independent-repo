@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MetricsConfiguration {
 
+    /**
+     * Бин для конфигурации Prometheus.
+     */
     @Bean
     public MeterRegistry meterRegistry() {
         PrometheusMeterRegistry prometheusRegistry = new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);

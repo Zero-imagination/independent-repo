@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Контроллер для работы с производителями.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/manufacturer", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -18,11 +21,19 @@ public class ManufacturerController {
 
     private final ManufacturerService manufacturerService;
 
+    /**
+     * Получить все записи из таблицы manufacturer.
+     */
     @GetMapping(value = "/all")
     public List<ManufacturerDto> getAllManufacturer() {
         return manufacturerService.getAll();
     }
 
+    /**
+     * Получить информацию о производителе по идентификатору.
+     *
+     * @param manufacturerId идентификатор производителя
+     */
     @GetMapping(value = "/{manufacturerId}")
     public ManufacturerDto getByManufacturerId(@PathVariable Long manufacturerId) {
         return manufacturerService.getByManufacturerId(manufacturerId);
