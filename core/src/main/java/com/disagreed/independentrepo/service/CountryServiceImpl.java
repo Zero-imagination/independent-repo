@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса CountryDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class CountryServiceImpl implements CountryService {
@@ -21,31 +24,35 @@ public class CountryServiceImpl implements CountryService {
 
     private final CountryMapper countryMapper;
 
+    @Override
     public CountryDto getByCountryId(Long countryId, Long typeCode) {
         CountryEntity countryEntity = countryStrategy.getStrategy(typeCode).getByCountryId(countryId)
-                .orElseThrow(()-> new RuntimeException("Страны с идентификатором %d не найдено".formatted(countryId)));
+                .orElseThrow(() -> new RuntimeException("Страны с идентификатором %d не найдено".formatted(countryId)));
         return countryMapper.toDto(countryEntity);
     }
 
+    @Override
     public CountryDto getByName(String name) {
         CountryEntity countryEntity = countryRepository.getByName(name)
-                .orElseThrow(()-> new RuntimeException("Страны с названием %s не найдено".formatted(name)));
+                .orElseThrow(() -> new RuntimeException("Страны с названием %s не найдено".formatted(name)));
         return countryMapper.toDto(countryEntity);
     }
 
+    @Override
     public List<CountryDto> getAll(Long typeCode) {
         List<CountryEntity> countryEntities = countryStrategy.getStrategy(typeCode).getAll();
         return countryMapper.toDto(countryEntities);
     }
 
+    @Override
     public Long getCountAll() {
         return countryRepository.countAll()
-                .orElseThrow(()-> new RuntimeException("Не удалось получить количество стран"));
+                .orElseThrow(() -> new RuntimeException("Не удалось получить количество стран"));
     }
 
     @Override
-    public Boolean exists(Long counryId) {
-        return countryRepository.exists(counryId);
+    public Boolean exists(Long countryId) {
+        return countryRepository.exists(countryId);
     }
 
 }

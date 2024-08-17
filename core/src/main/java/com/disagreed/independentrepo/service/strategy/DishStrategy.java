@@ -8,12 +8,20 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Стратегия выбора репозитория для Dish.
+ */
 @RequiredArgsConstructor
 @Service
 public class DishStrategy {
 
     private final Map<String, IndependentDishRepository> dishStrategies;
 
+    /**
+     * Получить реализацию интерфейса репозитория по его идентификатору типа.
+     *
+     * @param typeCode идентификатор типа репозитория
+     */
     public IndependentDishRepository getStrategy(Long typeCode) {
         String serviceName = RepositoryType.getServiceNameByTypeCode(typeCode) + DishStrategy.class.getSimpleName();
         return Optional.ofNullable(dishStrategies.get(serviceName))

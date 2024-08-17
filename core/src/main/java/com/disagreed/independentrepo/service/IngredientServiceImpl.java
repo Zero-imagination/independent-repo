@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса IngredientDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class IngredientServiceImpl implements IngredientService {
@@ -26,7 +29,7 @@ public class IngredientServiceImpl implements IngredientService {
     public IngredientDto getByIngredientId(Long ingredientId) {
         return ingredientRepository.getByIngredientId(ingredientId)
                 .map(ingredientMapper::toDto)
-                .orElseThrow(()-> new RuntimeException("Ингредиента с идентификатором %s не найдено"
+                .orElseThrow(() -> new RuntimeException("Ингредиента с идентификатором %s не найдено"
                         .formatted(ingredientId)));
     }
 }

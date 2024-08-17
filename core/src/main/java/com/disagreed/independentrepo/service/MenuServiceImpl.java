@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Реализация сервиса CRUD операций для класса MenuDto.
+ */
 @Service
 @RequiredArgsConstructor
 public class MenuServiceImpl implements MenuService {
@@ -26,7 +29,7 @@ public class MenuServiceImpl implements MenuService {
     public MenuDto getByMenuId(Long menuId) {
         return menuRepository.getByMenuId(menuId)
                 .map(menuMapper::toDto)
-                .orElseThrow(()-> new RuntimeException("Меню с идентификатором %s не найдено"
+                .orElseThrow(() -> new RuntimeException("Меню с идентификатором %s не найдено"
                         .formatted(menuId)));
     }
 }
