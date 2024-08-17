@@ -1,7 +1,4 @@
 on:
-  push:
-    branches:
-      - '*' # Триггер на пуш в ветку dev
   pull_request:
     branches:
       - '*'  # Триггер на создание MR в любую ветку
