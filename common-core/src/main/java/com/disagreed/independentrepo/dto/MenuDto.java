@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * Меню ресторана.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

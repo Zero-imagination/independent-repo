@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * Модель данных страны
+ * Модель данных страны.
  */
 @Data
 @NoArgsConstructor
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class CountryDto {
 
     /**
-     * Идентификатор страны в БД
+     * Идентификатор страны в БД.
      */
     private Long countryId;
 

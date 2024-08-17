@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Производитель или поставщик ингредиентов.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

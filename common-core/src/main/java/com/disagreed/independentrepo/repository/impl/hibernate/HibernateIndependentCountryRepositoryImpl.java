@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Hibernate реализация интерфейса CRUD операций для класса CountryEntity.
+ */
 @Service("hibernateCountryStrategy")
 @RequiredArgsConstructor
 public class HibernateIndependentCountryRepositoryImpl implements IndependentCountryRepository {

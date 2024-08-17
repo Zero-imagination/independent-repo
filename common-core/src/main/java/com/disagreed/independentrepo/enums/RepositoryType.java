@@ -3,6 +3,9 @@ package com.disagreed.independentrepo.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * Перечисления для выбора типа репозитория.
+ */
 @Getter
 @AllArgsConstructor
 public enum RepositoryType {
@@ -13,6 +16,12 @@ public enum RepositoryType {
     private final String serviceName;
     private final Long typeCode;
 
+    /**
+     * Получить название сервиса по идентификатору его типа.
+     *
+     * @param typeCode идентификатор типа
+     * @return название сервиса
+     */
     public static String getServiceNameByTypeCode(Long typeCode) {
         for (RepositoryType repositoryType : values()) {
             if (repositoryType.typeCode.equals(typeCode)) {

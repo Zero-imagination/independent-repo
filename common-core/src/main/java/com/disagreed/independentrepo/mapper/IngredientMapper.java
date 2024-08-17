@@ -9,13 +9,21 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface IngredientMapper extends AbstractMapper<IngredientEntity, IngredientDto> {
+
     @Override
     IngredientDto toDto(IngredientEntity entity);
+
+    /**
+     * Метод для конвертации IngredientEntity в IngredientDto.
+     */
+    List<IngredientDto> toDto(Collection<IngredientEntity> entities);
 
     @Override
     IngredientEntity toEntity(IngredientDto dto);
 
+    /**
+     * Метод для конвертации IngredientDto в IngredientEntity.
+     */
     List<IngredientEntity> toEntity(Collection<IngredientDto> dtos);
 
-    List<IngredientDto> toDto(Collection<IngredientEntity> entities);
 }
