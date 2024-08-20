@@ -1,0 +1,25 @@
+###
+
+# curl --location --request POST 'http://localhost:8080/engine-rest/deployment/create'
+#--form 'deployment-name="Обработка заказа в ресторане"'
+#--form 'data=@"/D:/Education/Digital_league/IPR_2024/independent-repo/core/src/main/resources/camunda/dis_restaurant_process.bpmn"'
+#--form 'deployment-source="init"'
+POST http://localhost:8080/engine-rest/deployment/create
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="deployment-name"
+
+"Обработка заказа в ресторане"
+--WebAppBoundary
+Content-Disposition: form-data; name="data"; filename="dis_restaurant_process.bpmn""
+
+< "\D:\Education\Digital_league\IPR_2024\independent-repo\core\src\main\resources\camunda\dis_restaurant_process.bpmn"
+--WebAppBoundary
+Content-Disposition: form-data; name="deployment-source"
+
+"init"
+--WebAppBoundary--
+
+###
+

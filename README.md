@@ -1,7 +1,7 @@
 # independent-repo
 Creating a repository that can work with both Hibernate and MyBatis
 
-Используемые технологии: SpringBoot, Hibernate, MyBatis, Liquibase, Mapstruct, Lombok
+Используемые технологии: SpringBoot, Kafka, Camunda, Hibernate, MyBatis, Liquibase, Mapstruct, Lombok
 
 Для реализаци репозитория Hibernate используется JpaRepository
 Для реализации репозитория MyBatis используется интерфейс с аннотацией @Mapper и xml файлы мапперов
@@ -14,6 +14,8 @@ Creating a repository that can work with both Hibernate and MyBatis
 В конфигурационном файле application.yml в поле repository.name необходимо указать какой из репозиториев будет использован
 
 Для сбора метрик используется prometheus, для отображения - grafana
+
+Ссылка для отображения процесса в [camunda cockpit](http://localhost:8080/camunda/app/cockpit/default/#/process) 
 
 ---
 
